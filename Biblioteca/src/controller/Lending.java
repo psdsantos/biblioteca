@@ -19,6 +19,8 @@ public class Lending extends Operation{
 		this.lendingDate = lendingDate;
 	}
 	
+	
+	
 	public boolean verifyBookAvailability(Book book) {
 		// VERIFICA DISPONIBILIDADE DO LIVRO
 		return book.status;
@@ -29,10 +31,11 @@ public class Lending extends Operation{
 	}
 	public void lendBookTo() {
 		// REALIZAR LENDING:
-		// RECEBER USUARIO
-		// RECEBER NOME DO LIVRO
-		// CHECHAR DISPONIBILIDADE DO LIVRO
-		// DEIXAR LIVRO INDISPONIVEL
-		// 
+		// RECEBER USER
+		// RECEBER BOOK
+		// CHECHAR DISPONIBILIDADE DO BOOK
+		// DEIXAR BOOK INDISPONIVEL (status = 0)
+		// ADICIONAR BOOK À LISTA DE BORROWED DO USER
+		// SAVE TRANSACTION
 	}
 }

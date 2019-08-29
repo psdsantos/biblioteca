@@ -6,7 +6,7 @@ public class User {
 	String name;
 	String cpf;
 	boolean status;
-	ArrayList<Book> borrowed = new ArrayList<Book>();
+	public ArrayList<Book> borrowed = new ArrayList<Book>();
 	
 	public User() {
 	}
