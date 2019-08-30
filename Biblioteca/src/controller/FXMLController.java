@@ -14,7 +14,8 @@ import javafx.scene.layout.GridPane;
 public class FXMLController implements Initializable {
 
 	@FXML
-	private GridPane root;
+	private AnchorPane root;
+	
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -27,6 +28,7 @@ public class FXMLController implements Initializable {
 			AnchorPane pane = new AnchorPane();
 			pane = FXMLLoader.<AnchorPane>load(Paths.get("src/view/FXML_lendingView.fxml").toUri().toURL());
 			root.getChildren().setAll(pane);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

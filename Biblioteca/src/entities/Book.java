@@ -2,15 +2,12 @@ package entities;
 
 public class Book {
 	String name;
-	int code;
 	public boolean status;
 	
 	public Book() {
 	}
-	public Book(String name, int code, boolean status) {
-		super();
+	public Book(String name, boolean status) {
 		this.name = name;
-		this.code = code;
 		this.status = status;
 	}
 	public String getName() {
@@ -19,12 +16,8 @@ public class Book {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getCode() {
-		return code;
-	}
-	public void setCode(int code) {
-		this.code = code;
-	}
+	
+	
 	public void setStatus(boolean status) {
 		this.status = status;
 	}
