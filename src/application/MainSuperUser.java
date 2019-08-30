@@ -10,32 +10,31 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-public class MainSuperUser extends Application {
+public class MainSuperUser {
 
-	@Override
-	public void start(Stage primaryStage) {
-		try {
-			AnchorPane root = new AnchorPane();
+	public void startGUI() {
+		try 
+		{
+			AnchorPane root;
 			
+			Stage primaryStage = new Stage();
+			System.out.println("AAAAAAAA");
+			URL thisURL = this.getClass().getClassLoader().getResource("view/FXML_view.fxml");
 			
-			URL fxmlUrl;
-			fxmlUrl = Paths.get("src/view/FXML_view.fxml").toUri().toURL();
-			root = FXMLLoader.<AnchorPane>load(fxmlUrl);
+			root = new FXMLLoader(thisURL).load();
 			
+			Scene myScene = new Scene(root);
 			
-			Scene scene = new Scene(root);
-			scene.getStylesheets().add(getClass().getResource("/view/application.css").toExternalForm());
+			primaryStage.setTitle("Data game");
 			
-			primaryStage.setScene(scene);
+			primaryStage.setScene(myScene);
+			
 			primaryStage.show();
 			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
 		
 	}
 
-	public static void main(String[] args) {
-		launch(args);
-	}
 }

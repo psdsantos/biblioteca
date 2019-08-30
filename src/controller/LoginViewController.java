@@ -3,6 +3,7 @@ package controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import application.MainSuperUser;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -29,7 +30,7 @@ public class LoginViewController implements Initializable{
 	
 	@FXML
 	PasswordField passwordField;
-	
+
 	@FXML
 	Label passwordLabel;
 	
@@ -41,9 +42,6 @@ public class LoginViewController implements Initializable{
 	
 	@FXML
 	Label CPFLabel;
-
-	@FXML
-	ProgressIndicator ProgressIndicator;
 	
 	@FXML
 	ImageView myCorpImg;
@@ -70,27 +68,36 @@ public class LoginViewController implements Initializable{
 		Constraints.setTextFieldMaxLength(passwordField, 30);
 	}
 	
+	
 	public void onEnterAction() {
 		enterButton.setOnAction(new EventHandler<ActionEvent>() {
 			
 			@Override
 			public void handle(ActionEvent event) {
+			
 				
 			if(CPFField.getText().equalsIgnoreCase(null)){
 				Alerts.showAlert("Null field", "You didn't enter the login CPF", AlertType.INFORMATION);
 			}else {
-			
+
 			UserDAOJDBC userDAOJDBC = DaoFactory.createUserDaojdbc();
+		
 			User user = userDAOJDBC.findByCPF(CPFField.getText());
+			
 			
 			if(user.getPassword().equals(passwordField.getText())) {
 				if(user.isSuperUser()) {
+						
+					Stage stage = (Stage) enterButton.getScene().getWindow();
+					stage.close();
 					
-				Stage stage = (Stage) enterButton.getScene().getWindow();
-				stage.close();
+					MainSuperUser mainSuperUser = new MainSuperUser();
+					mainSuperUser.startGUI();
 				
-				}
 			}
+			}
+			
+			
 			}
 			
 			

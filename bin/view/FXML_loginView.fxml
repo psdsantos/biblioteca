@@ -37,7 +37,6 @@
                   <Font name="System Bold Italic" size="15.0" />
                </font>
             </Label>
-            <ProgressIndicator fx:id="progressIndicator" layoutX="507.0" layoutY="309.0" prefHeight="62.0" prefWidth="44.0" progress="0.0" />
             <ImageView fx:id="myCorpImg" fitHeight="75.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@img12-removebg-preview.png" />
@@ -58,7 +57,7 @@
                   <Font name="System Bold Italic" size="10.0" />
                </font>
             </Label>
-            <Button fx:id="enterButton" layoutX="272.0" layoutY="271.0" mnemonicParsing="false" opacity="0.79" prefHeight="29.0" prefWidth="85.0" text="Enter" textFill="#141414" />
+            <Button fx:id="enterButton" layoutX="272.0" layoutY="271.0" mnemonicParsing="false" onAction="#onEnterAction" opacity="0.79" prefHeight="29.0" prefWidth="85.0" text="Enter" textFill="#141414" />
          </children>
       </AnchorPane>
    </children>

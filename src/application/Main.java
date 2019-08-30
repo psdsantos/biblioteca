@@ -28,10 +28,6 @@ public class Main extends Application {
 			
 			VBox root = new VBox();
 			
-			UserDAOJDBC userDAOJDBC = DaoFactory.createUserDaojdbc();
-			User user = userDAOJDBC.findByID(1);
-			System.out.println( user.getCpf());
-			
 			URL fxmlUrl;
 			fxmlUrl = Paths.get("src/view/FXML_loginView.fxml").toUri().toURL();
 			root = FXMLLoader.<VBox>load(fxmlUrl);

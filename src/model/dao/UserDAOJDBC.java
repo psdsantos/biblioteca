@@ -40,6 +40,8 @@ public class UserDAOJDBC implements DAO<User> {
 				obj.setCpf(rs.getString("clientCPF"));
 				obj.setBorrowedBooksCount(rs.getInt("BorrowedBookCount"));
 				obj.setSuperUser(rs.getBoolean("SuperUser"));
+				obj.setPassword(rs.getString("clientPassword"));
+				
 				
 				return obj;
 
@@ -73,9 +75,10 @@ public class UserDAOJDBC implements DAO<User> {
 				obj.setName(rs.getString("Name"));
 				obj.setStatus(rs.getBoolean("clientStatus"));
 				obj.setCpf(rs.getString("clientCPF"));
-				obj.setBorrowedBooksCount(rs.getInt("borrowedBooksCount"));
+				obj.setBorrowedBooksCount(rs.getInt("BorrowedBookCount"));
 				obj.setSuperUser(rs.getBoolean("SuperUser"));
-				
+				obj.setPassword(rs.getString("clientPassword"));
+			
 				return obj;
 
 		}catch(Exception e) {
@@ -114,6 +117,7 @@ public class UserDAOJDBC implements DAO<User> {
 				obj.setCpf(rs.getString("clientCPF"));
 				obj.setBorrowedBooksCount(rs.getInt("BorrowedBookCount"));
 				obj.setSuperUser(rs.getBoolean("SuperUser"));
+				obj.setPassword(rs.getString("clientPassword"));
 				
 				list.add(obj);
 			}
@@ -157,7 +161,7 @@ public class UserDAOJDBC implements DAO<User> {
 			conn = DB.getConnection();
 			
 			preparedStatement = conn.prepareStatement("UPDATE Book"
-					+ "SET ID = ?, clientCPF =?, clientStatus =?, Name = ?, SuperUser = ?, BorrowedBookCount =?"
+					+ "SET ID = ?, clientCPF =?, clientStatus =?, Name = ?, SuperUser = ?, BorrowedBookCount =?, clientPassword = ?"
 					+ "WHERE ID = ?;"
 					) ;
 			
@@ -168,7 +172,8 @@ public class UserDAOJDBC implements DAO<User> {
 			preparedStatement.setString(4, user.getName());
 			preparedStatement.setBoolean(5, user.isSuperUser());
 			preparedStatement.setInt(6, user.getBorrowedBooksCount());
-			preparedStatement.setInt(6, user.getID());
+			preparedStatement.setString(7, user.getPassword());
+			preparedStatement.setInt(8, user.getID());
 			
 			int rowsAffected = preparedStatement.executeUpdate();
 			
@@ -195,9 +200,9 @@ public class UserDAOJDBC implements DAO<User> {
 			
 			conn = DB.getConnection();
 			preparedStatement = conn.prepareStatement("INSERT INTO Book"
-					+ "(ID, clientCPF, clientStatus, Name, SuperUser, BorrowedBookCount)"
+					+ "(ID, clientCPF, clientStatus, Name, SuperUser, BorrowedBookCount, clientPassword)"
 					+ "VALUES"
-					+ "(?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS
+					+ "(?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS
 					) ;
 			
 			preparedStatement.setInt(1, user.getID());
@@ -206,6 +211,7 @@ public class UserDAOJDBC implements DAO<User> {
 			preparedStatement.setString(4, user.getName());
 			preparedStatement.setBoolean(5, user.isSuperUser());
 			preparedStatement.setInt(6, user.getBorrowedBooksCount());
+			preparedStatement.setString(7, user.getPassword());
 			
 			
 			int rowsAffected = preparedStatement.executeUpdate();

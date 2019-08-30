@@ -2,7 +2,7 @@ package controller;
 
 import java.util.Date;
 
-import entities.User;
+import model.entities.User;
 
 public class Operation {
 	protected User user;

@@ -1,6 +1,7 @@
 package controller;
 import java.util.Date;
-import entities.Book;
+
+import model.entities.Book;
 
 public class Lending extends Operation{
 	Date lendingDate;
@@ -23,10 +24,10 @@ public class Lending extends Operation{
 	
 	public boolean verifyBookAvailability(Book book) {
 		// VERIFICA DISPONIBILIDADE DO LIVRO
-		return book.status;
+		return book.isStatus();
 	}
 	public boolean verifyUserStatus() {
-		// VERIFICA DISPONIBILIDADE DO USUÁRIO QUE REALIZA O LENDING
+		// VERIFICA DISPONIBILIDADE DO USUï¿½RIO QUE REALIZA O LENDING
 		return super.user.isStatus();
 	}
 	public void lendBookTo() {
@@ -35,7 +36,7 @@ public class Lending extends Operation{
 		// RECEBER BOOK
 		// CHECHAR DISPONIBILIDADE DO BOOK
 		// DEIXAR BOOK INDISPONIVEL (status = 0)
-		// ADICIONAR BOOK À LISTA DE BORROWED DO USER
+		// ADICIONAR BOOK ï¿½ LISTA DE BORROWED DO USER
 		// SAVE TRANSACTION
 	}
 }

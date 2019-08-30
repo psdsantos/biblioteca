@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -10,7 +15,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="bookPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="634.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLController_book">
+<AnchorPane fx:id="bookPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="634.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLController_book">
    <children>
       <Label layoutX="18.0" layoutY="66.0" text="Nome">
          <font>
@@ -30,7 +35,7 @@
          </columns>
       </TableView>
       <Label layoutX="305.0" layoutY="74.0" />
-      <TextField layoutX="311.0" layoutY="65.0" prefHeight="25.0" prefWidth="379.0" />
+      <TextField layoutX="305.0" layoutY="60.0" prefHeight="29.0" prefWidth="450.0" />
       <ImageView fitHeight="25.0" fitWidth="18.0" layoutX="279.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../resources/search.png" />
@@ -61,15 +66,15 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Button layoutX="18.0" layoutY="349.0" mnemonicParsing="false" text="Atualizar" />
-      <Button layoutX="16.0" layoutY="130.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="63.0" text="Cadastrar" />
+      <Button layoutX="14.0" layoutY="317.0" mnemonicParsing="false" text="Atualizar" />
+      <Button layoutX="14.0" layoutY="103.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="94.0" text="Cadastrar" />
       <Label layoutX="18.0" layoutY="495.0" text="Nome">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
       <TextField editable="false" layoutX="85.0" layoutY="496.0" />
-      <Button layoutX="18.0" layoutY="562.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="63.0" text="Deletar" />
+      <Button layoutX="18.0" layoutY="536.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="63.0" text="Deletar" />
       <Button layoutX="18.0" layoutY="602.0" mnemonicParsing="false" onAction="#loadView" prefHeight="25.0" prefWidth="252.0" text="Cancelar" />
       <Label layoutX="18.0" layoutY="279.0" text="Nome">
          <font>
