@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="returningPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLController_lending">
+<AnchorPane fx:id="returningPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLController_returning">
    <children>
       <Button layoutX="334.0" layoutY="355.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="252.0" text="Confirmar" />
       <TextField layoutX="155.0" layoutY="66.0" prefHeight="25.0" prefWidth="210.0" />
@@ -20,7 +20,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Button layoutX="14.0" layoutY="355.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="252.0" text="Cancelar" />
+      <Button layoutX="14.0" layoutY="355.0" mnemonicParsing="false" onAction="#loadView" prefHeight="25.0" prefWidth="252.0" text="Cancelar" />
       <TableView layoutX="14.0" layoutY="174.0" prefHeight="166.0" prefWidth="264.0">
          <columns>
             <TableColumn prefWidth="263.0" text="Nome" />
