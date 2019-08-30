@@ -88,10 +88,7 @@ public class UserDAOJDBC implements DAO<User> {
 		return obj;
 		
 	}	
-	
-	public void findByCPF(User user) {
-		
-	}
+
 	
 	@Override
 	public List findAll() {
@@ -147,7 +144,7 @@ public class UserDAOJDBC implements DAO<User> {
 			
 	
 		}catch(Exception e) {
-			Alerts.showAlert("ja to loko", e.getMessage(), AlertType.ERROR);
+			Alerts.showAlert("Error in delete some data", e.getMessage(), AlertType.ERROR);
 		}
 		
 		}
