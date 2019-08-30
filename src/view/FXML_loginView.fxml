@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginViewController">
+   <children>
+      <AnchorPane prefHeight="400.0" prefWidth="611.0">
+         <children>
+            <ImageView fx:id="loginImage" fitHeight="400.0" fitWidth="599.0" pickOnBounds="true">
+               <image>
+                  <Image url="@getty_883231284_200013331818843182490_335833.jpg" />
+               </image>
+            </ImageView>
+            <PasswordField fx:id="passwordField" layoutX="207.0" layoutY="234.0" prefHeight="29.0" prefWidth="215.0" promptText="Password" />
+            <Label fx:id="passwordLabel" layoutX="278.0" layoutY="213.0" text="Password" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="15.0" />
+               </font>
+            </Label>
+            <Hyperlink fx:id="registerAction" layoutX="261.0" layoutY="351.0" text="Register now" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="15.0" />
+               </font>
+            </Hyperlink>
+            <Label fx:id="accountQuestion" layoutX="216.0" layoutY="319.0" text="Don't you have an account?" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold Italic" size="15.0" />
+               </font>
+            </Label>
+            <TextField fx:id="CPFField" layoutX="203.0" layoutY="147.0" prefHeight="29.0" prefWidth="222.0" promptText="xxx.xxx.xxx-xx" />
+            <Label fx:id="CPFLabel" layoutX="300.0" layoutY="120.0" text="CPF" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="15.0" />
+               </font>
+            </Label>
+            <ProgressIndicator fx:id="progressIndicator" layoutX="507.0" layoutY="309.0" prefHeight="62.0" prefWidth="44.0" progress="0.0" />
+            <ImageView fx:id="myCorpImg" fitHeight="75.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img12-removebg-preview.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="sdsPedro" layoutX="13.0" layoutY="75.0" opacity="0.11" text="sdsPedro ">
+               <font>
+                  <Font name="System Bold Italic" size="10.0" />
+               </font>
+            </Label>
+            <Label fx:id="and" layoutX="26.0" layoutY="90.0" opacity="0.11" text="and ">
+               <font>
+                  <Font name="System Bold Italic" size="10.0" />
+               </font>
+            </Label>
+            <Label fx:id="EddieSCJ" layoutX="15.0" layoutY="105.0" opacity="0.11" text="EddieSCJ ">
+               <font>
+                  <Font name="System Bold Italic" size="10.0" />
+               </font>
+            </Label>
+            <Button fx:id="enterButton" layoutX="272.0" layoutY="271.0" mnemonicParsing="false" opacity="0.79" prefHeight="29.0" prefWidth="85.0" text="Enter" textFill="#141414" />
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>
