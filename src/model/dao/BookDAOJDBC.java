@@ -3,14 +3,12 @@ package model.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 import javafx.scene.control.Alert.AlertType;
 import model.db.DB;
-import model.db.DbException;
 import model.entities.Book;
 import model.entities.User;
 import model.util.Alerts;
@@ -18,13 +16,44 @@ import model.util.Alerts;
 public class BookDAOJDBC implements DAO<Book>{
 
 	@Override
-	public List<Book> findByID_Name(Book book) {
+	public Book findByID(Integer id) {
 
-		List<Book> list = null;
-		list = findAll();
+		Connection conn=null;
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		Book obj=null;
 		
-		list.removeIf(n -> !n.getName().equalsIgnoreCase(book.getName()));
-		return list;
+		try {
+			if(conn==null) {
+				conn = DB.getConnection();
+			}
+	
+			st = conn.prepareStatement(
+				"SELECT * FROM Book WHERE ID = ?");
+		
+			st.setInt(1, id);
+			
+			rs = st.executeQuery();
+			rs.next();
+			obj = new Book();
+			
+			obj.setId(rs.getInt("ID"));
+		
+			obj.setName(rs.getString("Name"));
+			obj.setStatus(rs.getBoolean("bookStatus"));
+			User user = new User();
+			
+			user.setID(rs.getInt("ClientID"));
+			
+			obj.setUser(user);
+			
+		}
+			catch(Exception e) {
+				Alerts.showAlert("Error in recovery data", e.getMessage(), AlertType.ERROR);
+			}
+		
+		return obj;
+	
 	}
 
 	@Override
@@ -65,7 +94,7 @@ public class BookDAOJDBC implements DAO<Book>{
 	}
 
 	@Override
-	public void delete(Book book) {
+	public void delete(Integer id) {
 		// TODO Auto-generated method stub
 		try {
 			Connection conn;
@@ -76,7 +105,7 @@ public class BookDAOJDBC implements DAO<Book>{
 			preparedStatement = conn.prepareStatement("DELETE FROM Book WHERE ID = ?"
 					) ;
 			
-			preparedStatement.setInt(1, book.getId());
+			preparedStatement.setInt(1, id);
 			
 			int rowsAffected = preparedStatement.executeUpdate();
 			

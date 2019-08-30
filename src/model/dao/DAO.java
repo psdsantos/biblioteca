@@ -4,11 +4,11 @@ import java.util.List;
 
 public interface DAO <T> {
 
-	List<T> findByID_Name (T t);
+	T findByID (Integer id);
 	
 	List<T> findAll();
 	
-	void delete(T t);
+	void delete(Integer id);
 	
 	int update(T t);
 	

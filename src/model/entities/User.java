@@ -36,6 +36,14 @@ public class User {
 	
 	
 	
+	public boolean isSuperUser() {
+		return superUser;
+	}
+
+	public void setSuperUser(boolean superUser) {
+		this.superUser = superUser;
+	}
+
 	public Integer getID() {
 		return ID;
 	}

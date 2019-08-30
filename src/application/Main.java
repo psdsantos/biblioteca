@@ -21,12 +21,6 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage primaryStage) {
-	BookDAOJDBC bookDAOJDBC = DaoFactory.createBookDAOJDBC();
-		
-		List<Book> book = new ArrayList<Book>();
-		book = bookDAOJDBC.findByID_Name(new Book("Sun Dreams", true));
-		System.out.println(book.get(0).getName());
-		
 			
 		try {
 			
@@ -41,6 +35,7 @@ public class Main extends Application {
 			Scene scene = new Scene(root);
 			
 			primaryStage.setScene(scene);
+			primaryStage.setResizable(false);
 			primaryStage.show();
 			
 		} catch (Exception e) {
