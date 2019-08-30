@@ -21,16 +21,6 @@
                   <Font name="System Bold Italic" size="15.0" />
                </font>
             </Label>
-            <Hyperlink fx:id="registerAction" layoutX="261.0" layoutY="351.0" text="Register now" textFill="WHITE">
-               <font>
-                  <Font name="System Bold Italic" size="15.0" />
-               </font>
-            </Hyperlink>
-            <Label fx:id="accountQuestion" layoutX="216.0" layoutY="319.0" text="Don't you have an account?" textAlignment="CENTER">
-               <font>
-                  <Font name="System Bold Italic" size="15.0" />
-               </font>
-            </Label>
             <TextField fx:id="CPFField" layoutX="203.0" layoutY="147.0" prefHeight="29.0" prefWidth="222.0" promptText="xxx.xxx.xxx-xx" />
             <Label fx:id="CPFLabel" layoutX="300.0" layoutY="120.0" text="CPF" textAlignment="CENTER" textFill="WHITE">
                <font>

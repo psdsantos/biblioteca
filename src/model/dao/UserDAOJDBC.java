@@ -27,14 +27,14 @@ public class UserDAOJDBC implements DAO<User> {
 				conn = DB.getConnection();
 			}
 			st = conn.prepareStatement(
-				"SELECT * FROM Client WHERE ID = ?");
+				"SELECT * FROM Client WHERE ClientID = ?");
 			st.setInt(1, id);
 			rs = st.executeQuery();
 			rs.next();
 			//ID = ?, clientCPF =?, clientStatus =?, Name = ?, SuperUser = ?, BorrowedBookCount =?
 
 				obj = new User();
-				obj.setID(rs.getInt("ID"));
+				obj.setID(rs.getInt("ClientID"));
 				obj.setName(rs.getString("Name"));
 				obj.setStatus(rs.getBoolean("clientStatus"));
 				obj.setCpf(rs.getString("clientCPF"));
@@ -71,7 +71,7 @@ public class UserDAOJDBC implements DAO<User> {
 			//ID = ?, clientCPF =?, clientStatus =?, Name = ?, SuperUser = ?, BorrowedBookCount =?
 
 				obj = new User();
-				obj.setID(rs.getInt("ID"));
+				obj.setID(rs.getInt("ClientID"));
 				obj.setName(rs.getString("Name"));
 				obj.setStatus(rs.getBoolean("clientStatus"));
 				obj.setCpf(rs.getString("clientCPF"));
@@ -105,13 +105,13 @@ public class UserDAOJDBC implements DAO<User> {
 				conn = DB.getConnection();
 			}
 			st = conn.prepareStatement(
-				"SELECT * FROM Client ORDER BY ID");
+				"SELECT * FROM Client ORDER BY ClientID");
 			rs = st.executeQuery();
 
 			//ID = ?, clientCPF =?, clientStatus =?, Name = ?, SuperUser = ?, BorrowedBookCount =?
 			while (rs.next()) {
 				User obj = new User();
-				obj.setID(rs.getInt("ID"));
+				obj.setID(rs.getInt("ClientID"));
 				obj.setName(rs.getString("Name"));
 				obj.setStatus(rs.getBoolean("clientStatus"));
 				obj.setCpf(rs.getString("clientCPF"));
@@ -139,7 +139,7 @@ public class UserDAOJDBC implements DAO<User> {
 			
 			conn = DB.getConnection();
 			
-			preparedStatement = conn.prepareStatement("DELETE FROM Client WHERE ID = ?;");
+			preparedStatement = conn.prepareStatement("DELETE FROM Client WHERE ClientID = ?;");
 		
 			preparedStatement.setInt(1, id);
 			
@@ -160,9 +160,9 @@ public class UserDAOJDBC implements DAO<User> {
 			
 			conn = DB.getConnection();
 			
-			preparedStatement = conn.prepareStatement("UPDATE Book"
-					+ "SET ID = ?, clientCPF =?, clientStatus =?, Name = ?, SuperUser = ?, BorrowedBookCount =?, clientPassword = ?"
-					+ "WHERE ID = ?;"
+			preparedStatement = conn.prepareStatement("UPDATE Client"
+					+ "SET ClientID = ?, clientCPF =?, clientStatus =?, Name = ?, SuperUser = ?, BorrowedBookCount =?, clientPassword = ?"
+					+ "WHERE ClientID = ?;"
 					) ;
 			
 			
@@ -199,19 +199,18 @@ public class UserDAOJDBC implements DAO<User> {
 			PreparedStatement preparedStatement;
 			
 			conn = DB.getConnection();
-			preparedStatement = conn.prepareStatement("INSERT INTO Book"
-					+ "(ID, clientCPF, clientStatus, Name, SuperUser, BorrowedBookCount, clientPassword)"
+			preparedStatement = conn.prepareStatement("INSERT INTO Client"
+					+ "(clientCPF, clientStatus, Name, SuperUser, BorrowedBookCount, clientPassword)"
 					+ "VALUES"
-					+ "(?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS
+					+ "(?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS
 					) ;
 			
-			preparedStatement.setInt(1, user.getID());
-			preparedStatement.setString(2, user.getCpf());
-			preparedStatement.setBoolean(3, user.isStatus());
-			preparedStatement.setString(4, user.getName());
-			preparedStatement.setBoolean(5, user.isSuperUser());
-			preparedStatement.setInt(6, user.getBorrowedBooksCount());
-			preparedStatement.setString(7, user.getPassword());
+			preparedStatement.setString(1, user.getCpf());
+			preparedStatement.setBoolean(2, user.isStatus());
+			preparedStatement.setString(3, user.getName());
+			preparedStatement.setBoolean(4, user.isSuperUser());
+			preparedStatement.setInt(5, user.getBorrowedBooksCount());
+			preparedStatement.setString(6, user.getPassword());
 			
 			
 			int rowsAffected = preparedStatement.executeUpdate();

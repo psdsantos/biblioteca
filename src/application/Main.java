@@ -24,6 +24,13 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 			
+		User user = new User("Pedro Silva Dos Santos", "061.615.995-11", 0, true);
+		user.setSuperUser(true);
+		user.setPassword("pedrosds");
+		
+		UserDAOJDBC userDAOJDBC = DaoFactory.createUserDaojdbc();
+		userDAOJDBC.save(user);
+		
 		try {
 			
 			VBox root = new VBox();
