@@ -8,8 +8,10 @@ public class Book {
 	 * True = isAvailabe
 	 * False = ins't Available
 	 */
+
 	private boolean status;
 	private User user;
+	
 	
 	public Book() {
 	}
@@ -17,12 +19,18 @@ public class Book {
 	public Book(String name, boolean status) {
 		this.name = name;
 		this.status = status;
+
 	}
 	
+
 	public Integer getId() {
 		return id;
 	}
 
+	public void setId(Integer id) {
+		this.id=id;
+	}
+	
 	public User getUser() {
 		return user;
 	}

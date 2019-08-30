@@ -1,16 +1,18 @@
 package model.dao;
 
+import java.util.List;
+
 public interface DAO <T> {
 
-	void findByID (T t);
+	List<T> findByID_Name (T t);
 	
-	void findAll();
+	List<T> findAll();
 	
 	void delete(T t);
 	
-	void update(T t);
+	int update(T t);
 	
-	void save (T t);
+	int save (T t);
 	
 	
 }

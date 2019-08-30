@@ -7,6 +7,7 @@ import model.exceptions.BookException;
 
 public class User {
 	
+	private boolean superUser; 
 	private Integer ID;
 	private String name;
 	private String cpf;

@@ -1,19 +1,25 @@
 package model.dao;
 
+import java.util.List;
+
 import model.entities.User;
 
 public class UserDAOJDBC implements DAO<User> {
 
 	@Override
-	public void findByID(User user) {
+	public List<User> findByID_Name(User user) {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
-	@Override
-	public void findAll() {
-		// TODO Auto-generated method stub
+	public void findByCPF(User user) {
 		
+	}
+	
+	@Override
+	public List findAll() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
@@ -23,15 +29,15 @@ public class UserDAOJDBC implements DAO<User> {
 	}
 
 	@Override
-	public void update(User user) {
+	public int update(User user) {
 		// TODO Auto-generated method stub
-		
+		return -1111;
 	}
 
 	@Override
-	public void save(User user) {
+	public int save(User user) {
 		// TODO Auto-generated method stub
-		
+		return -1111;
 	}
 
 	

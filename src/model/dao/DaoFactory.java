@@ -2,11 +2,11 @@ package model.dao;
 
 public class DaoFactory {
 
-	public UserDAOJDBC createUserDaojdbc() {
+	public static UserDAOJDBC createUserDaojdbc() {
 		return new UserDAOJDBC();
 	}
 	
-	public BookDAOJDBC createBookDAOJDBC() {
+	public static BookDAOJDBC createBookDAOJDBC() {
 		return new BookDAOJDBC();
 	}
 	
