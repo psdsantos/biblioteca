@@ -12,6 +12,7 @@ public class User {
 	private String name;
 	private String cpf;
 	private int borrowedBooksCount;
+	private String password;
 	/**
 	 * True = Can take books
 	 * False = Can't take books
@@ -36,6 +37,14 @@ public class User {
 	
 	
 	
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	public boolean isSuperUser() {
 		return superUser;
 	}

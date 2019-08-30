@@ -37,9 +37,9 @@ public class UserDAOJDBC implements DAO<User> {
 				obj.setID(rs.getInt("ID"));
 				obj.setName(rs.getString("Name"));
 				obj.setStatus(rs.getBoolean("clientStatus"));
-				obj.setCpf(rs.getString("ClientCPF"));
-				obj.setBorrowedBooksCount(rs.getInt("borrowedBooksCount"));
-				obj.setSuperUser(rs.getBoolean("isSuperUser"));
+				obj.setCpf(rs.getString("clientCPF"));
+				obj.setBorrowedBooksCount(rs.getInt("BorrowedBookCount"));
+				obj.setSuperUser(rs.getBoolean("SuperUser"));
 				
 				return obj;
 
@@ -51,6 +51,41 @@ public class UserDAOJDBC implements DAO<User> {
 		
 	}
 
+	public User findByCPF(String CPF) {
+		Connection conn=null;
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		User obj=null;
+
+		try {
+			if(conn==null) {
+				conn = DB.getConnection();
+			}
+			st = conn.prepareStatement(
+				"SELECT * FROM Client WHERE clientCPF = ?");
+			st.setString(1, CPF);
+			rs = st.executeQuery();
+			rs.next();
+			//ID = ?, clientCPF =?, clientStatus =?, Name = ?, SuperUser = ?, BorrowedBookCount =?
+
+				obj = new User();
+				obj.setID(rs.getInt("ID"));
+				obj.setName(rs.getString("Name"));
+				obj.setStatus(rs.getBoolean("clientStatus"));
+				obj.setCpf(rs.getString("clientCPF"));
+				obj.setBorrowedBooksCount(rs.getInt("borrowedBooksCount"));
+				obj.setSuperUser(rs.getBoolean("SuperUser"));
+				
+				return obj;
+
+		}catch(Exception e) {
+			Alerts.showAlert("To quase caindo", e.getMessage(), AlertType.ERROR);
+		}
+
+		return obj;
+		
+	}	
+	
 	public void findByCPF(User user) {
 		
 	}
@@ -76,9 +111,9 @@ public class UserDAOJDBC implements DAO<User> {
 				obj.setID(rs.getInt("ID"));
 				obj.setName(rs.getString("Name"));
 				obj.setStatus(rs.getBoolean("clientStatus"));
-				obj.setCpf(rs.getString("ClientCPF"));
-				obj.setBorrowedBooksCount(rs.getInt("borrowedBooksCount"));
-				obj.setSuperUser(rs.getBoolean("isSuperUser"));
+				obj.setCpf(rs.getString("clientCPF"));
+				obj.setBorrowedBooksCount(rs.getInt("BorrowedBookCount"));
+				obj.setSuperUser(rs.getBoolean("SuperUser"));
 				
 				list.add(obj);
 			}

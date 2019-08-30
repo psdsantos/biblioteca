@@ -14,7 +14,9 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.dao.BookDAOJDBC;
 import model.dao.DaoFactory;
+import model.dao.UserDAOJDBC;
 import model.entities.Book;
+import model.entities.User;
 import model.util.Alerts;
 
 public class Main extends Application {
@@ -26,6 +28,9 @@ public class Main extends Application {
 			
 			VBox root = new VBox();
 			
+			UserDAOJDBC userDAOJDBC = DaoFactory.createUserDaojdbc();
+			User user = userDAOJDBC.findByID(1);
+			System.out.println( user.getCpf());
 			
 			URL fxmlUrl;
 			fxmlUrl = Paths.get("src/view/FXML_loginView.fxml").toUri().toURL();

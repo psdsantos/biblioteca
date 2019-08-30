@@ -21,12 +21,12 @@ public class DB {
 			
 			connection = DriverManager.getConnection(url, properties);
 			
-			
-			
 			}
 			catch(SQLException sqle) {
+				
 			sqle.printStackTrace();	
 			throw new 	DbException("Error in init the connection");
+			
 			}
 		
 		}
