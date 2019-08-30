@@ -8,24 +8,24 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="398.0" prefWidth="642.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLController">
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLController">
    <children>
-      <Button layoutX="415.0" layoutY="221.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="185.0" text="Manter usuários">
+      <Button layoutX="415.0" layoutY="221.0" mnemonicParsing="false" onAction="#loadUserView" prefHeight="90.0" prefWidth="185.0" text="Gerenciar usuários">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="10.0" layoutY="221.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="185.0" text="Manter livros">
+      <Button layoutX="10.0" layoutY="221.0" mnemonicParsing="false" onAction="#loadBookView" prefHeight="90.0" prefWidth="185.0" text="Gerenciar livros">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="216.0" layoutY="221.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="185.0" text="Consultar penalidades">
+      <Button layoutX="216.0" layoutY="221.0" mnemonicParsing="false" onAction="#loadPenaltiesView" prefHeight="90.0" prefWidth="185.0" text="Consultar penalidades">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="415.0" layoutY="89.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="185.0" text="Realizar devolução">
+      <Button layoutX="415.0" layoutY="89.0" mnemonicParsing="false" onAction="#loadReturningView" prefHeight="90.0" prefWidth="185.0" text="Realizar devolução">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

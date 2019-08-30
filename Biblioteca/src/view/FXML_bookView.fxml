@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="634.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="bookPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="634.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLController_book">
    <children>
       <Label layoutX="18.0" layoutY="66.0" text="Nome">
          <font>
@@ -70,6 +70,7 @@
       </Label>
       <TextField editable="false" layoutX="85.0" layoutY="496.0" />
       <Button layoutX="18.0" layoutY="562.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="63.0" text="Deletar" />
+      <Button layoutX="18.0" layoutY="602.0" mnemonicParsing="false" onAction="#loadView" prefHeight="25.0" prefWidth="252.0" text="Cancelar" />
       <Label layoutX="18.0" layoutY="279.0" text="Nome">
          <font>
             <Font size="18.0" />

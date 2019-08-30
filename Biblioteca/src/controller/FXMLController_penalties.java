@@ -10,10 +10,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 
-public class FXMLController_lending implements Initializable{
+public class FXMLController_penalties implements Initializable{
 	
 	@FXML
-	private AnchorPane lendingPane;
+	private AnchorPane penaltiesPane;
 	
 	
 	@Override
@@ -26,7 +26,7 @@ public class FXMLController_lending implements Initializable{
 		try {
 			AnchorPane pane = new AnchorPane();
 			pane = FXMLLoader.<AnchorPane>load(Paths.get("src/view/FXML_view.fxml").toUri().toURL());
-			lendingPane.getChildren().setAll(pane);
+			penaltiesPane.getChildren().setAll(pane);
 			
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -33,5 +33,49 @@ public class FXMLController implements Initializable {
 			e.printStackTrace();
 		}
 	}
+	@FXML
+	private void loadReturningView(ActionEvent event) {
+		try {
+			AnchorPane pane = new AnchorPane();
+			pane = FXMLLoader.<AnchorPane>load(Paths.get("src/view/FXML_returningView.fxml").toUri().toURL());
+			root.getChildren().setAll(pane);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	@FXML
+	private void loadUserView(ActionEvent event) {
+		try {
+			AnchorPane pane = new AnchorPane();
+			pane = FXMLLoader.<AnchorPane>load(Paths.get("src/view/FXML_userView.fxml").toUri().toURL());
+			root.getChildren().setAll(pane);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	@FXML
+	private void loadBookView(ActionEvent event) {
+		try {
+			AnchorPane pane = new AnchorPane();
+			pane = FXMLLoader.<AnchorPane>load(Paths.get("src/view/FXML_bookView.fxml").toUri().toURL());
+			root.getChildren().setAll(pane);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	@FXML
+	private void loadPenaltiesView(ActionEvent event) {
+		try {
+			AnchorPane pane = new AnchorPane();
+			pane = FXMLLoader.<AnchorPane>load(Paths.get("src/view/FXML_penaltiesView.fxml").toUri().toURL());
+			root.getChildren().setAll(pane);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 }
