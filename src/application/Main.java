@@ -24,12 +24,13 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 			
-		User user = new User("Pedro Silva Dos Santos", "061.615.995-11", 0, true);
-		user.setSuperUser(true);
-		user.setPassword("pedrosds");
+		//User user = new User("Pedro Silva Dos Santos", "061.615.995-11", 0, true);
+		//user.setSuperUser(true);
+		//user.setPassword("pedrosds");
+		//System.out.println(user);
 		
-		UserDAOJDBC userDAOJDBC = DaoFactory.createUserDaojdbc();
-		userDAOJDBC.save(user);
+		//UserDAOJDBC userDAOJDBC = DaoFactory.createUserDaojdbc();
+		//userDAOJDBC.save(user);
 		
 		try {
 			

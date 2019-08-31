@@ -1,6 +1,6 @@
 package controller;
 
-import java.awt.Button;
+
 import java.net.URL;
 import java.nio.file.Paths;
 import java.util.List;
@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TableColumn;
@@ -61,31 +62,34 @@ public class FXMLController_user implements Initializable{
 	@FXML
 	CheckBox ckSuperUser;
 	
+	UserDAOJDBC userDAO = DaoFactory.createUserDaojdbc();;
 	
 	public ObservableList<User> initList() {
-		UserDAOJDBC userDAO = DaoFactory.createUserDaojdbc();
+
 		ObservableList<User> obs = FXCollections.observableArrayList();
 		
-		List<User> list = userDAO.findAll();
+		List<User> list = this.userDAO.findAll();
 		
 		for (User user : list) {
-			System.out.println(user.getName());
 			obs.add(user);
 		}
 		return obs;
 	}
 
+	public void attTableView() {		
+		tbView.setItems(initList());
+	}
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 	
-	
-	idColumn.setCellValueFactory(new PropertyValueFactory<>("ID"));
-	nameCOlumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-	cpfColumn.setCellValueFactory(new PropertyValueFactory<>("cpf"));
-	booksColumn.setCellValueFactory(new PropertyValueFactory<>("borrowedBooksCount"));
+		idColumn.setCellValueFactory(new PropertyValueFactory<>("ID"));
+		nameCOlumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+		cpfColumn.setCellValueFactory(new PropertyValueFactory<>("cpf"));
+		booksColumn.setCellValueFactory(new PropertyValueFactory<>("borrowedBooksCount"));
 
-	tbView.setItems(initList());
-	
+		attTableView();
+		
 	}
 	
 	@FXML
@@ -107,9 +111,13 @@ public class FXMLController_user implements Initializable{
 		User user = new User(nameField.getText(), CPFField.getText(), 0, true);
 		user.setPassword(passwordField.getText());
 		user.setSuperUser(Boolean.parseBoolean(ckSuperUser.getText()));
+	
+		System.out.println(user);
 		
-		UserDAOJDBC userDAOJDBC = DaoFactory.createUserDaojdbc();
-		userDAOJDBC.save(user);
+		userDAO.save(user);
+		attTableView();
+		Alerts.showAlert("Registered", "Registered with success", AlertType.INFORMATION);
+	
 	}
 	}
 

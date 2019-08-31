@@ -108,4 +108,13 @@ public class User {
 	public void setBorrowedBooksCount(int borrowedBooksCount) {
 		this.borrowedBooksCount = borrowedBooksCount;
 	}
+
+	@Override
+	public String toString() {
+		return "User [superUser=" + superUser + ", ID=" + ID + ", name=" + name + ", cpf=" + cpf
+				+ ", borrowedBooksCount=" + borrowedBooksCount + ", password=" + password + ", status=" + status
+				+ ", borrowed=" + borrowed + "]";
+	}
+	
+	
 }
