@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import model.dao.BookDAOJDBC;
 import model.dao.DaoFactory;
 import model.dao.UserDAOJDBC;
+import model.db.DB;
 import model.entities.Book;
 import model.entities.User;
 import model.util.Alerts;
@@ -33,12 +34,11 @@ public class Main extends Application {
 		//userDAOJDBC.save(user);
 		
 		try {
-			
+			DB.getConnection();
 			VBox root = new VBox();
 			
-			URL fxmlUrl;
-			fxmlUrl = Paths.get("src/view/FXML_loginView.fxml").toUri().toURL();
-			root = FXMLLoader.<VBox>load(fxmlUrl);
+			URL thisURL = this.getClass().getClassLoader().getResource("view/FXML_loginView.fxml");
+			root = FXMLLoader.load(thisURL);
 			
 			
 			Scene scene = new Scene(root);
@@ -48,6 +48,8 @@ public class Main extends Application {
 			primaryStage.show();
 			
 		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println(e.getMessage());
 			Alerts.showAlert("Error to start app", e.getMessage(), AlertType.ERROR);
 		}
 		

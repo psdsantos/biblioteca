@@ -1,6 +1,7 @@
 package controller;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import com.mysql.cj.x.protobuf.MysqlxExpect.Open.Condition.Key;
@@ -23,6 +24,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import model.dao.DaoFactory;
 import model.dao.UserDAOJDBC;
+import model.db.DbException;
 import model.entities.User;
 import model.util.Alerts;
 import model.util.Constraints;
@@ -68,6 +70,7 @@ public class LoginViewController implements Initializable {
 	}
 
 	public void onKeyPressed() {
+		try {
 		passwordField.setOnKeyPressed(evt -> {
 
 			if (evt.getCode() == KeyCode.ENTER) {
@@ -77,8 +80,15 @@ public class LoginViewController implements Initializable {
 
 					UserDAOJDBC userDAOJDBC = DaoFactory.createUserDaojdbc();
 
-					User user = userDAOJDBC.findByCPF(CPFField.getText());
+					User user=null;
+					try {
+						user = userDAOJDBC.findByCPF(CPFField.getText());
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
 
+						Alerts.showAlert("Incorrect data", "Incorrect cpf or password", AlertType.WARNING);
+					}
+					if(user!= null) {
 					if (user.getPassword().equals(passwordField.getText())) {
 						if (user.isSuperUser()) {
 
@@ -88,12 +98,24 @@ public class LoginViewController implements Initializable {
 							MainSuperUser mainSuperUser = new MainSuperUser();
 							mainSuperUser.startGUI();
 
+						} else {
+
 						}
+
+					} else {
+						Alerts.showAlert("Incorrect data", "Incorrect cpf or password", AlertType.WARNING);
 					}
+				}
+				else {
+					Alerts.showAlert("Incorrect data", "Incorrect cpf or password", AlertType.WARNING);
 				}
 
 			}
+			}
 		});
+		}catch(Exception e) {
+			Alerts.showAlert("Configuring JVM", "Try again", AlertType.INFORMATION);
+		}
 	}
 
 	public void onEnterAction() {
@@ -108,7 +130,13 @@ public class LoginViewController implements Initializable {
 
 					UserDAOJDBC userDAOJDBC = DaoFactory.createUserDaojdbc();
 
-					User user = userDAOJDBC.findByCPF(CPFField.getText());
+					User user=null;
+					try {
+						user = userDAOJDBC.findByCPF(CPFField.getText());
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						Alerts.showAlert("Incorrect data", "Incorrect cpf or password", AlertType.WARNING);
+					}
 
 					if (user.getPassword().equals(passwordField.getText())) {
 						if (user.isSuperUser()) {
@@ -119,13 +147,17 @@ public class LoginViewController implements Initializable {
 							MainSuperUser mainSuperUser = new MainSuperUser();
 							mainSuperUser.startGUI();
 
+							}else {
+							
 						}
+						
+					}else {
+						Alerts.showAlert("Incorrect data", "Incorrect cpf or password", AlertType.WARNING);
 					}
-
 				}
-
 			}
 		});
+		
 	}
 
 }

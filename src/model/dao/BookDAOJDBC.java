@@ -49,11 +49,11 @@ public class BookDAOJDBC implements DAO<Book>{
 			
 		}
 			catch(Exception e) {
-				Alerts.showAlert("Error in recovery data", e.getMessage(), AlertType.ERROR);
+				Alerts.showAlert("Not found", "Data not found", AlertType.ERROR);
 			}
-		
+		finally {
 		return obj;
-	
+		}
 	}
 
 	@Override
@@ -87,10 +87,10 @@ public class BookDAOJDBC implements DAO<Book>{
 			return list;
 		}
 		catch (Exception e) {
-			Alerts.showAlert("Error in recovery data", e.getMessage(), AlertType.ERROR);
-		}
-		return list;
+			Alerts.showAlert("Not found", "Data not found", AlertType.ERROR);
+			}
 		
+		return list;
 	}
 
 	@Override
@@ -118,7 +118,7 @@ public class BookDAOJDBC implements DAO<Book>{
 	}
 
 	@Override
-	public int update(Book book) {
+	public void update(Book book) {
 		// TODO Auto-generated method stub
 		try {
 			Connection conn;
@@ -142,7 +142,7 @@ public class BookDAOJDBC implements DAO<Book>{
 				preparedStatement = conn.prepareStatement("UPDATE Book"
 						+ "SET Name = ?, "
 						+ "bookStatus = ?,"
-						+ "WHERE ID = ?;"
+						+ "WHERE ID = ?"
 						) ;
 				
 				preparedStatement.setString(1, book.getName());
@@ -152,18 +152,13 @@ public class BookDAOJDBC implements DAO<Book>{
 			}
 			int rowsAffected = preparedStatement.executeUpdate();
 			
-			ResultSet resultSet = preparedStatement.getGeneratedKeys();
-		
 			//conn.close();
 			//preparedStatement.close();
-			resultSet.next();
 			
 		
-			return resultSet.getInt(1);
 		} catch(Exception e) {
 			Alerts.showAlert("Error in UPDATE data", e.getMessage(), AlertType.ERROR);
 		}
-		return -1111;
 	}
 
 	@Override

@@ -3,6 +3,7 @@ package model.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.List;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import model.db.DB;
+import model.db.DbException;
 import model.entities.User;
 import model.util.Alerts;
 
@@ -22,6 +24,8 @@ public class UserDAOJDBC implements DAO<User> {
 		ResultSet rs = null;
 		User obj=null;
 
+		
+		
 		try {
 			if(conn==null) {
 				conn = DB.getConnection();
@@ -48,18 +52,17 @@ public class UserDAOJDBC implements DAO<User> {
 		}catch(Exception e) {
 			Alerts.showAlert("To quase caindo", e.getMessage(), AlertType.ERROR);
 		}
-
+		finally {
 		return obj;
-		
+		}
 	}
 
-	public User findByCPF(String CPF) {
+	public User findByCPF(String CPF) throws SQLException, DbException {
 		Connection conn=null;
 		PreparedStatement st = null;
 		ResultSet rs = null;
 		User obj=null;
 
-		try {
 			if(conn==null) {
 				conn = DB.getConnection();
 			}
@@ -81,11 +84,6 @@ public class UserDAOJDBC implements DAO<User> {
 			
 				return obj;
 
-		}catch(Exception e) {
-			Alerts.showAlert("To quase caindo", e.getMessage(), AlertType.ERROR);
-		}
-
-		return obj;
 		
 	}	
 
@@ -121,7 +119,7 @@ public class UserDAOJDBC implements DAO<User> {
 			return list;
 		}
 		catch (Exception e) {
-			Alerts.showAlert("Error in recovery data", e.getMessage(), AlertType.ERROR);
+			Alerts.showAlert("Not found", "Data not found", AlertType.ERROR);
 		}
 		return list;
 		
@@ -136,7 +134,7 @@ public class UserDAOJDBC implements DAO<User> {
 			
 			conn = DB.getConnection();
 			
-			preparedStatement = conn.prepareStatement("DELETE FROM Client WHERE ClientID = ?;");
+			preparedStatement = conn.prepareStatement("DELETE FROM Client WHERE ClientID = ?");
 		
 			preparedStatement.setInt(1, id);
 			
@@ -150,42 +148,38 @@ public class UserDAOJDBC implements DAO<User> {
 		}
 
 	@Override
-	public int update(User user) {
+	public void update(User user) {
 		try {
 			Connection conn;
 			PreparedStatement preparedStatement;
 			
 			conn = DB.getConnection();
 			
-			preparedStatement = conn.prepareStatement("UPDATE Client"
-					+ "SET ClientID = ?, clientCPF =?, clientStatus =?, Name = ?, SuperUser = ?, BorrowedBookCount =?, clientPassword = ?"
-					+ "WHERE ClientID = ?;"
-					) ;
+			preparedStatement = conn.prepareStatement("UPDATE Client SET clientCPF = ?,"
+					+ " clientStatus = ?, Name = ?, SuperUser = ?, BorrowedBookCount = ?, clientPassword = ? "
+					+ "WHERE ClientID = ?");
 			
 			
-			preparedStatement.setInt(1, user.getID());
-			preparedStatement.setString(2, user.getCpf());
-			preparedStatement.setBoolean(3, user.isStatus());
-			preparedStatement.setString(4, user.getName());
-			preparedStatement.setBoolean(5, user.isSuperUser());
-			preparedStatement.setInt(6, user.getBorrowedBooksCount());
-			preparedStatement.setString(7, user.getPassword());
-			preparedStatement.setInt(8, user.getID());
+			preparedStatement.setString(1, user.getCpf());
+			preparedStatement.setBoolean(2, user.isStatus());
+			preparedStatement.setString(3, user.getName());
+			preparedStatement.setBoolean(4, user.isSuperUser());
+			preparedStatement.setInt(5, user.getBorrowedBooksCount());
+			preparedStatement.setString(6, user.getPassword());
+			preparedStatement.setInt(7, user.getID());
 			
 			int rowsAffected = preparedStatement.executeUpdate();
 			
-			ResultSet resultSet = preparedStatement.getGeneratedKeys();
 		
 			//conn.close();
 			//preparedStatement.close();
-			resultSet.next();
 			
 		
-			return resultSet.getInt(1);
 		} catch(Exception e) {
+			e.printStackTrace();
+			System.out.println(e.getMessage());
 			Alerts.showAlert("Error in UPDATE data", e.getMessage(), AlertType.ERROR);
 		}
-		return -1111;
 	}
 
 	@Override
@@ -221,6 +215,7 @@ public class UserDAOJDBC implements DAO<User> {
 		
 			return resultSet.getInt(1);
 		} catch(Exception e) {
+			
 			Alerts.showAlert("Error in write data", e.getMessage(), AlertType.ERROR);
 		} 
 		return -1111;

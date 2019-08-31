@@ -10,7 +10,7 @@ public interface DAO <T> {
 	
 	void delete(Integer id);
 	
-	int update(T t);
+	void update(T t);
 	
 	int save (T t);
 	

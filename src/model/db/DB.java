@@ -61,7 +61,7 @@ public class DB {
 			return dbProperties;
 		
 		} catch (IOException e) {
-		
+			System.out.println(e.getMessage());
 			throw new DbException("Error in opening db.properties");
 	
 		}
