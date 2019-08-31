@@ -30,6 +30,21 @@ public class FXMLController_user implements Initializable{
 
 	
 	@FXML
+	Button updateButton;
+	
+	@FXML 
+	TextField updateNameField;
+	
+	@FXML
+	TextField updateCPFField;
+	
+	@FXML
+	PasswordField updatePasswordField;
+	
+	@FXML 
+	CheckBox updateSuperUserCK;
+	
+	@FXML
 	private AnchorPane userPane;
 	
 	@FXML
@@ -48,21 +63,21 @@ public class FXMLController_user implements Initializable{
 	private TableColumn<User, Integer> booksColumn ;
 	
 	@FXML 
-	TextField nameField;
+	private TextField nameField;
 	
 	@FXML
-	TextField CPFField;
+	private TextField CPFField;
 	
 	@FXML
-	PasswordField passwordField;
+	private PasswordField passwordField;
 	
 	@FXML 
-	Button registerButton;
+	private Button registerButton;
 	
 	@FXML
-	CheckBox ckSuperUser;
+	private CheckBox ckSuperUser;
 	
-	UserDAOJDBC userDAO = DaoFactory.createUserDaojdbc();;
+	private UserDAOJDBC userDAO = DaoFactory.createUserDaojdbc();;
 	
 	public ObservableList<User> initList() {
 
@@ -78,6 +93,21 @@ public class FXMLController_user implements Initializable{
 
 	public void attTableView() {		
 		tbView.setItems(initList());
+		
+	}
+	
+	public User onMouseClicked() {
+		Integer id = tbView.getSelectionModel().getSelectedItem().getID();
+		User userBD = userDAO.findByID(id);
+		
+		updateCPFField.setText(userBD.getCpf());
+		updateNameField.setText(userBD.getName());
+		updatePasswordField.setText(userBD.getPassword());
+		updateSuperUserCK.setSelected(userBD.isSuperUser());
+		
+		
+		return userBD;
+		
 	}
 	
 	@Override
@@ -119,6 +149,19 @@ public class FXMLController_user implements Initializable{
 		Alerts.showAlert("Registered", "Registered with success", AlertType.INFORMATION);
 	
 	}
+	}
+	
+	public void onUpdateButton() {
+		User user = new User();
+		
+		user = onMouseClicked();
+		
+		user.setCpf(updateCPFField.getText());
+		user.setPassword(updatePasswordField.getText());
+		user.setName(updateNameField.getText());
+		user.setSuperUser(Boolean.parseBoolean(updateSuperUserCK.getText()));
+		userDAO.update(user);
+	
 	}
 
 }

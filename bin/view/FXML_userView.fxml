@@ -74,7 +74,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Button layoutX="9.0" layoutY="470.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="84.0" text="Update" />
+      <Button fx:id="updateButton" layoutX="9.0" layoutY="470.0" mnemonicParsing="false" onAction="#onUpdateButton" prefHeight="29.0" prefWidth="84.0" text="Update" />
       <Button fx:id="registerButton" layoutX="10.0" layoutY="195.0" mnemonicParsing="false" onAction="#OnRegisterUser" prefHeight="29.0" prefWidth="84.0" text="Register" />
       <Label layoutX="11.0" layoutY="341.0" text="Name">
          <font>
@@ -86,16 +86,16 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField layoutX="76.0" layoutY="341.0" promptText="Name" />
-      <TextField layoutX="76.0" layoutY="374.0" promptText="CPF" />
+      <TextField fx:id="updateNameField" layoutX="76.0" layoutY="341.0" promptText="Name" />
+      <TextField fx:id="updateCPFField" layoutX="76.0" layoutY="374.0" promptText="CPF" />
       <Label layoutX="17.0" layoutY="128.0" text="PWD">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
       <PasswordField fx:id="passwordField" layoutX="85.0" layoutY="126.0" promptText="Password" />
-      <CheckBox layoutX="76.0" layoutY="444.0" mnemonicParsing="false" text="SuperUser" />
-      <PasswordField layoutX="74.0" layoutY="409.0" prefHeight="29.0" prefWidth="162.0" promptText="Password" />
+      <CheckBox fx:id="updateSuperUserCK" layoutX="76.0" layoutY="444.0" mnemonicParsing="false" text="SuperUser" />
+      <PasswordField fx:id="updatePasswordField" layoutX="74.0" layoutY="409.0" prefHeight="29.0" prefWidth="162.0" promptText="Password" />
       <Label layoutX="11.0" layoutY="411.0" text="PWD">
          <font>
             <Font size="18.0" />
@@ -106,7 +106,7 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="225.0" prefWidth="478.0">
                <children>
-                  <TableView fx:id="tbView" layoutX="-2.0" layoutY="-8.0" prefHeight="233.0" prefWidth="481.0">
+                  <TableView fx:id="tbView" layoutX="-2.0" layoutY="-8.0" onMouseClicked="#onMouseClicked" prefHeight="233.0" prefWidth="481.0">
                     <columns>
                         <TableColumn fx:id="idColumn" prefWidth="58.0" text="Id" />
                       <TableColumn fx:id="nameCOlumn" minWidth="0.0" prefWidth="203.0" text="Name" />
