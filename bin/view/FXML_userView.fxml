@@ -53,7 +53,7 @@
       <TextField fx:id="nameField" layoutX="85.0" layoutY="67.0" promptText="Name" />
       <TextField fx:id="CPFField" layoutX="85.0" layoutY="97.0" promptText="CPF" />
       <Label layoutX="305.0" layoutY="74.0" />
-      <TextField fx:id="searchUser" layoutX="305.0" layoutY="62.0" onAction="#onSearchUser" prefHeight="29.0" prefWidth="454.0" promptText="User CPF" />
+      <TextField fx:id="searchUser" layoutX="305.0" layoutY="62.0" onKeyPressed="#onSearchUser" prefHeight="29.0" prefWidth="454.0" promptText="User CPF" />
       <ImageView fitHeight="25.0" fitWidth="18.0" layoutX="279.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../resources/search.png" />

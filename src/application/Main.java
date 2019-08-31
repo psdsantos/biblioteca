@@ -1,10 +1,14 @@
 package application;
 
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URL;
-import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.Date;
+import java.util.Scanner;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -12,19 +16,36 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import model.dao.BookDAOJDBC;
-import model.dao.DaoFactory;
-import model.dao.UserDAOJDBC;
 import model.db.DB;
-import model.entities.Book;
-import model.entities.User;
 import model.util.Alerts;
 
 public class Main extends Application {
 
+	ArrayList<String> acessos = new ArrayList<String>();
+	
 	@Override
-	public void start(Stage primaryStage) {
-			
+	public void start(Stage primaryStage) throws IOException {
+		
+		try {
+		Scanner leitor = new Scanner(new FileReader("acessos.txt"));
+		while(leitor.hasNext()) {
+			String linha = leitor.nextLine();
+			acessos.add(linha);
+		}
+		leitor.close();
+		}catch(Exception e) {
+		PrintWriter gravador = new PrintWriter(new FileWriter("acessos.txt"));
+		gravador.close();
+		}
+		
+		acessos.add(new SimpleDateFormat("dd/MM/yyyy HH:mm").format(new Date()));
+		PrintWriter gravador = new PrintWriter(new FileWriter("acessos.txt"));
+		for (int i = 0; i < acessos.size(); i++) {
+			gravador.println(acessos.get(i));
+		}
+		gravador.close();
+		
+		
 		//User user = new User("Pedro Silva Dos Santos", "061.615.995-11", 0, true);
 		//user.setSuperUser(true);
 		//user.setPassword("pedrosds");
