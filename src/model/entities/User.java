@@ -97,14 +97,15 @@ public class User {
 	public void rmBooks(Book book)  {
 		if((this.getBorrowedBooksCount()-1)<3) {
 			this.setStatus(true);
-		}
-		if((this.getBorrowedBooksCount()-1)<=0) {
-			this.setStatus(true);
-			Alerts.showAlert("Minimum", "You have zero books, it is the minimum limit", AlertType.WARNING);
-		}else {
-
 			this.setBorrowedBooksCount(this.getBorrowedBooksCount() - 1);
 		}
+		if((this.getBorrowedBooksCount()-1)==0) {
+			this.setStatus(true);
+			Alerts.showAlert("Minimum", "You have zero books, it is the minimum limit", AlertType.WARNING);
+		}
+		
+		
+
 	}
 
 	
