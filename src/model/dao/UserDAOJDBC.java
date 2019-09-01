@@ -28,6 +28,7 @@ public class UserDAOJDBC implements DAO<User> {
 		
 		try {
 			if(conn==null) {
+				DB DB = new DB();
 				conn = DB.getConnection();
 			}
 			st = conn.prepareStatement(
@@ -64,6 +65,7 @@ public class UserDAOJDBC implements DAO<User> {
 		User obj=null;
 
 			if(conn==null) {
+				DB DB = new DB();
 				conn = DB.getConnection();
 			}
 			st = conn.prepareStatement(
@@ -97,6 +99,7 @@ public class UserDAOJDBC implements DAO<User> {
 
 		try {
 			if(conn==null) {
+				DB DB = new DB();
 				conn = DB.getConnection();
 			}
 			st = conn.prepareStatement(
@@ -131,7 +134,7 @@ public class UserDAOJDBC implements DAO<User> {
 		try {
 			Connection conn;
 			PreparedStatement preparedStatement;
-			
+			DB DB = new DB();
 			conn = DB.getConnection();
 			
 			preparedStatement = conn.prepareStatement("DELETE FROM Client WHERE ClientID = ?");
@@ -152,7 +155,7 @@ public class UserDAOJDBC implements DAO<User> {
 		try {
 			Connection conn;
 			PreparedStatement preparedStatement;
-			
+			DB DB = new DB();
 			conn = DB.getConnection();
 			
 			preparedStatement = conn.prepareStatement("UPDATE Client SET clientCPF = ?,"
@@ -188,7 +191,7 @@ public class UserDAOJDBC implements DAO<User> {
 		try {
 			Connection conn;
 			PreparedStatement preparedStatement;
-			
+			DB DB = new DB();
 			conn = DB.getConnection();
 			preparedStatement = conn.prepareStatement("INSERT INTO Client"
 					+ "(clientCPF, clientStatus, Name, SuperUser, BorrowedBookCount, clientPassword)"

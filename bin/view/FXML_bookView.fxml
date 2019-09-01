@@ -17,7 +17,7 @@
 
 <AnchorPane fx:id="bookPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="634.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLController_book">
    <children>
-      <Label layoutX="18.0" layoutY="66.0" text="Nome">
+      <Label layoutX="18.0" layoutY="66.0" text="Name">
          <font>
             <Font size="18.0" />
          </font>
@@ -27,21 +27,21 @@
             <Font name="Impact" size="21.0" />
          </font>
       </Label>
-      <TextField layoutX="85.0" layoutY="67.0" />
-      <TableView layoutX="279.0" layoutY="94.0" prefHeight="493.0" prefWidth="479.0">
+      <TextField fx:id="registerField" layoutX="85.0" layoutY="67.0" promptText="Name" />
+      <TableView fx:id="tbView" layoutX="279.0" layoutY="94.0" onMouseClicked="#onMouseClick" prefHeight="493.0" prefWidth="479.0">
          <columns>
-            <TableColumn minWidth="0.0" prefWidth="273.0" text="Nome" />
-            <TableColumn minWidth="0.0" prefWidth="205.0" text="CPF" />
+            <TableColumn fx:id="idColumn" minWidth="0.0" prefWidth="111.0" text="ID" />
+            <TableColumn fx:id="nameColumn" minWidth="0.0" prefWidth="367.0" text="Name" />
          </columns>
       </TableView>
       <Label layoutX="305.0" layoutY="74.0" />
-      <TextField layoutX="305.0" layoutY="60.0" prefHeight="29.0" prefWidth="450.0" />
+      <TextField fx:id="searchField" layoutX="305.0" layoutY="60.0" onKeyPressed="#onKeyPressed" prefHeight="29.0" prefWidth="450.0" promptText="Name" />
       <ImageView fitHeight="25.0" fitWidth="18.0" layoutX="279.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../resources/search.png" />
          </image>
       </ImageView>
-      <Label layoutX="279.0" layoutY="27.0" text="Buscar livro">
+      <Label layoutX="279.0" layoutY="27.0" text="Search Book">
          <font>
             <Font name="Impact" size="21.0" />
          </font>
@@ -51,7 +51,7 @@
             <Font name="Impact" size="21.0" />
          </font>
       </Label>
-      <Label layoutX="18.0" layoutY="239.0" prefHeight="40.0" prefWidth="185.0" text="Selecione na tabela o livro a ser atualizado" wrapText="true">
+      <Label layoutX="18.0" layoutY="239.0" prefHeight="40.0" prefWidth="185.0" text="Select on the table the book wiil be updated" wrapText="true">
          <font>
             <Font size="14.0" />
          </font>
@@ -61,26 +61,26 @@
             <Font name="Impact" size="21.0" />
          </font>
       </Label>
-      <Label layoutX="18.0" layoutY="455.0" prefHeight="40.0" prefWidth="185.0" text="Selecione na tabela o livro a ser deletado" wrapText="true">
+      <Label layoutX="18.0" layoutY="455.0" prefHeight="40.0" prefWidth="185.0" text="Selecte on the table the book will be deleted" wrapText="true">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Button layoutX="14.0" layoutY="317.0" mnemonicParsing="false" text="Atualizar" />
-      <Button layoutX="14.0" layoutY="107.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="94.0" text="Cadastrar" />
-      <Label layoutX="18.0" layoutY="495.0" text="Nome">
+      <Button fx:id="registerButton" layoutX="14.0" layoutY="107.0" mnemonicParsing="false" onAction="#onRegisterButton" prefHeight="29.0" prefWidth="94.0" text="Register" />
+      <Label layoutX="18.0" layoutY="495.0" text="Name">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField editable="false" layoutX="85.0" layoutY="496.0" />
-      <Button layoutX="18.0" layoutY="536.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="63.0" text="Deletar" />
+      <TextField fx:id="deleteField" editable="false" layoutX="85.0" layoutY="496.0" promptText="Name" />
+      <Button fx:id="deleteButton" layoutX="18.0" layoutY="536.0" mnemonicParsing="false" onAction="#onDeleteButton" prefHeight="25.0" prefWidth="63.0" text="Delete" />
       <Button layoutX="18.0" layoutY="602.0" mnemonicParsing="false" onAction="#loadView" prefHeight="25.0" prefWidth="252.0" text="Cancelar" />
-      <Label layoutX="18.0" layoutY="279.0" text="Nome">
+      <Label layoutX="18.0" layoutY="279.0" text="Name">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField layoutX="85.0" layoutY="280.0" />
+      <TextField fx:id="updateField" layoutX="85.0" layoutY="280.0" promptText="Name" />
+      <Button fx:id="updateButton" layoutX="14.0" layoutY="317.0" mnemonicParsing="false" onAction="#onUpdateButton" prefHeight="29.0" prefWidth="94.0" text="Update" />
    </children>
 </AnchorPane>

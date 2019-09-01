@@ -15,6 +15,52 @@ import model.util.Alerts;
 
 public class BookDAOJDBC implements DAO<Book>{
 
+	public List<Book> findByName(String name) {
+
+		Connection conn=null;
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		Book obj=null;
+		List<Book> list = new ArrayList<Book>();
+		
+		try {
+			if(conn==null) {
+				DB DB = new DB();
+				conn = DB.getConnection();
+			}
+			
+			st = conn.prepareStatement(
+				"SELECT * FROM Book WHERE Name = ?");
+		
+			st.setString(1, name);
+			
+			
+			rs = st.executeQuery();
+			
+			while(rs.next()) {
+			obj = new Book();
+			
+			obj.setId(rs.getInt("ID"));
+		
+			obj.setName(rs.getString("Name"));
+			obj.setStatus(rs.getBoolean("bookStatus"));
+			User user = new User();
+			
+			user.setID(rs.getInt("ClientID"));
+		
+			obj.setUser(user);
+			list.add(obj);
+			}
+			
+		}
+			catch(Exception e) {
+				Alerts.showAlert("Not found", "Book not found", AlertType.ERROR);
+			}
+		finally {
+		return list;
+		}
+	}
+	
 	@Override
 	public Book findByID(Integer id) {
 
@@ -25,6 +71,7 @@ public class BookDAOJDBC implements DAO<Book>{
 		
 		try {
 			if(conn==null) {
+				DB DB = new DB();
 				conn = DB.getConnection();
 			}
 	
@@ -66,6 +113,7 @@ public class BookDAOJDBC implements DAO<Book>{
 
 		try {
 			if(conn==null) {
+				DB DB = new DB();
 				conn = DB.getConnection();
 			}
 			st = conn.prepareStatement(
@@ -99,7 +147,7 @@ public class BookDAOJDBC implements DAO<Book>{
 		try {
 			Connection conn;
 			PreparedStatement preparedStatement;
-			
+			DB DB = new DB();
 			conn = DB.getConnection();
 			
 			preparedStatement = conn.prepareStatement("DELETE FROM Book WHERE ID = ?"
@@ -123,25 +171,27 @@ public class BookDAOJDBC implements DAO<Book>{
 		try {
 			Connection conn;
 			PreparedStatement preparedStatement;
-			
+			DB DB = new DB();
 			conn = DB.getConnection();
-			if(book.getUser().getID()!= null) {
-			preparedStatement = conn.prepareStatement("UPDATE Book"
+			
+			if(book.getUser().getID() != 0) {
+			preparedStatement = conn.prepareStatement("UPDATE Book "
 					+ "SET Name = ?, "
-					+ "ClientID = ?,"
-					+ "bookStatus = ?,"
-					+ "WHERE ID = ?;"
+					+ "ClientID = ?, "
+					+ "bookStatus = ? "
+					+ "WHERE ID = ?"
 					) ;
 			
 			preparedStatement.setString(1, book.getName());
-			preparedStatement.setString(2, book.getUser().getCpf());
+			preparedStatement.setInt(2, book.getUser().getID());
 			preparedStatement.setBoolean(3, book.isStatus());
 			preparedStatement.setInt(4, book.getId());
 			
 			}else {
-				preparedStatement = conn.prepareStatement("UPDATE Book"
+			
+				preparedStatement = conn.prepareStatement("UPDATE Book "
 						+ "SET Name = ?, "
-						+ "bookStatus = ?,"
+						+ "bookStatus = ? "
 						+ "WHERE ID = ?"
 						) ;
 				
@@ -157,6 +207,7 @@ public class BookDAOJDBC implements DAO<Book>{
 			
 		
 		} catch(Exception e) {
+			System.out.println(e.getMessage());
 			Alerts.showAlert("Error in UPDATE data", e.getMessage(), AlertType.ERROR);
 		}
 	}
@@ -168,9 +219,9 @@ public class BookDAOJDBC implements DAO<Book>{
 		try {
 			Connection conn;
 			PreparedStatement preparedStatement;
-			
+			DB DB = new DB();
 			conn = DB.getConnection();
-			if(book.getUser().getID() != null) {
+			if(book.getUser() != null) {
 			preparedStatement = conn.prepareStatement("INSERT INTO Book"
 					+ "(Name, clientID, bookStatus)"
 					+ "VALUES"
@@ -197,11 +248,15 @@ public class BookDAOJDBC implements DAO<Book>{
 		
 			//conn.close();
 			//preparedStatement.close();
+			
 			resultSet.next();
 			
 		
 			return resultSet.getInt(1);
+		
 		} catch(Exception e) {
+			e.printStackTrace();
+			System.out.println(e.getMessage());
 			Alerts.showAlert("Error in write data", e.getMessage(), AlertType.ERROR);
 		}
 		return -1111;

@@ -55,6 +55,7 @@ public class Main extends Application {
 		//userDAOJDBC.save(user);
 		
 		try {
+			DB DB = new DB();
 			DB.getConnection();
 			VBox root = new VBox();
 			

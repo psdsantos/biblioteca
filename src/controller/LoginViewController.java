@@ -93,10 +93,11 @@ public class LoginViewController implements Initializable {
 						if (user.isSuperUser()) {
 
 							Stage stage = (Stage) enterButton.getScene().getWindow();
-							stage.close();
+							
 
 							MainSuperUser mainSuperUser = new MainSuperUser();
 							mainSuperUser.startGUI();
+							stage.close();
 
 						} else {
 
@@ -142,11 +143,11 @@ public class LoginViewController implements Initializable {
 						if (user.isSuperUser()) {
 
 							Stage stage = (Stage) enterButton.getScene().getWindow();
-							stage.close();
+							
 
 							MainSuperUser mainSuperUser = new MainSuperUser();
 							mainSuperUser.startGUI();
-
+							stage.close();
 							}else {
 							
 						}

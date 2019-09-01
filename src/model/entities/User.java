@@ -3,7 +3,9 @@ package model.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.scene.control.Alert.AlertType;
 import model.exceptions.BookException;
+import model.util.Alerts;
 
 public class User {
 	
@@ -13,6 +15,7 @@ public class User {
 	private String cpf;
 	private int borrowedBooksCount;
 	private String password;
+	
 	/**
 	 * True = Can take books
 	 * False = Can't take books
@@ -20,9 +23,6 @@ public class User {
 	private boolean status;
 	
 	
-
-
-	private  List<Book> borrowed = new ArrayList<Book>();
 	
 	public User() {
 		
@@ -82,25 +82,32 @@ public class User {
 		this.cpf = cpf;
 	}
 	
-	public List getBorrowed() {
-		return this.borrowed;
-	}
 	
-	public void addBooks(Book book) throws BookException {
-		if(borrowed.size()>=3) {
+	public void addBooks(Book book) {
+		System.out.println(getBorrowedBooksCount());
+		if(this.getBorrowedBooksCount()+1>=3) {
 			this.setStatus(false);
-			throw new BookException("You have three books, it is the limit");
-		}
+			Alerts.showAlert("Maximum", "You have three books, it is the limit", AlertType.WARNING);
+			}else {
 
-		try {
-			this.borrowed.add(book);
 			this.setBorrowedBooksCount(this.getBorrowedBooksCount() + 1);
-		}catch(Exception e) {
-			throw new BookException(e.getMessage());
 		}
-		
 	}
 
+	public void rmBooks(Book book)  {
+		if((this.getBorrowedBooksCount()-1)<3) {
+			this.setStatus(true);
+		}
+		if((this.getBorrowedBooksCount()-1)<=0) {
+			this.setStatus(true);
+			Alerts.showAlert("Minimum", "You have zero books, it is the minimum limit", AlertType.WARNING);
+		}else {
+
+			this.setBorrowedBooksCount(this.getBorrowedBooksCount() - 1);
+		}
+	}
+
+	
 	public int getBorrowedBooksCount() {
 		return borrowedBooksCount;
 	}
@@ -108,12 +115,13 @@ public class User {
 	public void setBorrowedBooksCount(int borrowedBooksCount) {
 		this.borrowedBooksCount = borrowedBooksCount;
 	}
-
+	
+	
 	@Override
 	public String toString() {
 		return "User [superUser=" + superUser + ", ID=" + ID + ", name=" + name + ", cpf=" + cpf
 				+ ", borrowedBooksCount=" + borrowedBooksCount + ", password=" + password + ", status=" + status
-				+ ", borrowed=" + borrowed + "]";
+				+  "]";
 	}
 	
 	

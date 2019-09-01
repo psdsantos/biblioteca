@@ -7,15 +7,17 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
+import javafx.fxml.FXMLLoader;
+
 public class DB {
 	
 	private static Connection connection = null;
 	
-	public static Connection getConnection() throws DbException {
+	public Connection getConnection() throws DbException {
 		
 		if(connection==null) {
 			try {
-			Properties properties = loadProperties();
+			Properties properties = this.loadProperties();
 			
 			String url = properties.getProperty("dburl");
 			
@@ -34,7 +36,7 @@ public class DB {
 		
 	}
 	
-	public static void closeConnection() throws DbException {
+	public void closeConnection() throws DbException {
 		if(connection!= null) {
 		try {
 			connection.close();
@@ -49,14 +51,14 @@ public class DB {
 	}
 	
 	
-	private static Properties loadProperties() throws DbException  {
+	private Properties loadProperties() throws DbException  {
 
 		Properties dbProperties;
 
 		
 		try {
 			dbProperties = new Properties();
-			dbProperties.load(new FileInputStream("db.properties"));
+			dbProperties.load(this.getClass().getResourceAsStream("db.properties"));
 
 			return dbProperties;
 		
