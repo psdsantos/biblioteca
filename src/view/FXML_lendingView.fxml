@@ -34,8 +34,8 @@
       </Label>
       <Button layoutX="14.0" layoutY="355.0" mnemonicParsing="false" onAction="#loadView" prefHeight="25.0" prefWidth="252.0" text="Cancel" />
       <Label layoutX="40.0" layoutY="157.0" />
-      <TextField fx:id="searchBookField" layoutX="448.0" layoutY="133.0" onKeyPressed="#onSearchBookField" />
-      <TextField fx:id="searchUserField" layoutX="40.0" layoutY="134.0" onKeyPressed="#onSearchUserField" />
+      <TextField fx:id="searchBookField" layoutX="448.0" layoutY="133.0" onKeyPressed="#onSearchBookField" promptText="Book name" />
+      <TextField fx:id="searchUserField" layoutX="40.0" layoutY="134.0" onKeyPressed="#onSearchUserField" promptText="User CPF" />
       <ImageView fitHeight="25.0" fitWidth="18.0" layoutX="422.0" layoutY="137.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../resources/search.png" />
