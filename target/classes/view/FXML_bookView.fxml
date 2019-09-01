@@ -80,7 +80,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="updateField" layoutX="85.0" layoutY="280.0" promptText="Name" />
+      <TextField fx:id="updateField" editable="false" layoutX="85.0" layoutY="280.0" promptText="Name" />
       <Button fx:id="updateButton" layoutX="14.0" layoutY="317.0" mnemonicParsing="false" onAction="#onUpdateButton" prefHeight="29.0" prefWidth="94.0" text="Update" />
    </children>
 </AnchorPane>
