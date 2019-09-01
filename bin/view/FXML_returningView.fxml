@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="returningPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLController_returning">
+<AnchorPane fx:id="returningPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLController_returning">
    <children>
       <Button layoutX="334.0" layoutY="355.0" mnemonicParsing="false" onAction="#onConfirmButton" prefHeight="25.0" prefWidth="252.0" text="Confirm" />
       <TextField fx:id="bookIDReturn" editable="false" layoutX="376.0" layoutY="143.0" prefHeight="25.0" prefWidth="210.0" promptText="Book ID" />
@@ -44,7 +44,7 @@
       </Label>
       <ScrollPane layoutX="14.0" layoutY="180.0" prefHeight="161.0" prefWidth="316.0">
          <content>
-            <TableView fx:id="tbView" onMouseClicked="#onMouseClicked" prefHeight="874.0" prefWidth="380.0">
+            <TableView fx:id="tbView" onMouseClicked="#onMouseClicked" prefHeight="874.0" prefWidth="380.0" style="-fx-background-color: white;">
                <columns>
                   <TableColumn fx:id="idColumn" prefWidth="43.0" text="Id" />
                   <TableColumn fx:id="nameColumn" prefWidth="336.0" text="Name" />

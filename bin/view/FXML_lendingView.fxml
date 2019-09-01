@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="lendingPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="477.0" prefWidth="777.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLController_lending">
+<AnchorPane fx:id="lendingPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="477.0" prefWidth="777.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLController_lending">
    <children>
       <Button fx:id="confirmButton" layoutX="511.0" layoutY="355.0" mnemonicParsing="false" onAction="#onConfirmButton" prefHeight="25.0" prefWidth="252.0" text="Confirm" />
       <TextField fx:id="cpfField" editable="false" layoutX="163.0" layoutY="40.0" prefHeight="25.0" prefWidth="210.0" promptText="User CPF" />

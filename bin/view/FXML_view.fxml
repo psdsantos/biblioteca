@@ -21,7 +21,7 @@
             <Image url="@1_-T8oo_JoKkMxfnPKLt_Ciw.jpeg" />
          </image>
       </ImageView>
-      <Button layoutX="537.0" layoutY="353.0" mnemonicParsing="false" onAction="#loadUserView" prefHeight="90.0" prefWidth="185.0" text="Mange Users">
+      <Button layoutX="537.0" layoutY="353.0" mnemonicParsing="false" onAction="#loadUserView" prefHeight="90.0" prefWidth="185.0" text="Manage Users">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -36,7 +36,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="52.0" layoutY="211.0" mnemonicParsing="false" onAction="#loadLendingView" prefHeight="90.0" prefWidth="185.0" text="Make Lending">
+      <Button layoutX="52.0" layoutY="211.0" mnemonicParsing="false" onAction="#loadLendingView" prefHeight="90.0" prefWidth="185.0" text="Lend">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

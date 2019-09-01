@@ -30,7 +30,7 @@ public class Main extends Application {
 	
 	private void helloG1() throws InterruptedException {
 		tdl.speak("Hello G1 Group, My name is Arya and, I am preparing all for you. If you have some visual deficience. I am here to help you. Kisses. By Arya");
-		Thread.sleep(9000);
+		Thread.sleep(14000);
 	}
 	
 	private void initTXT() throws IOException {
