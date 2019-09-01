@@ -1,19 +1,19 @@
 package controller;
 
 
+import java.io.IOException;
 import java.net.URL;
-import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import application.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -152,13 +152,21 @@ public class FXMLController_user implements Initializable{
 	}
 	
 	
+	public AnchorPane loadThis() throws IOException {
+		AnchorPane root = new AnchorPane();
+		
+		URL thisURL = this.getClass().getClassLoader().getResource("view/FXML_userView.fxml");
+		root = FXMLLoader.load(thisURL);
+		return root;
+	}
+	
+	
 	@FXML
 	private void loadView(ActionEvent event) {
 		try {
 			AnchorPane pane = new AnchorPane();
-			pane = FXMLLoader.<AnchorPane>load(Paths.get("src/view/FXML_view.fxml").toUri().toURL());
-			userPane.getChildren().setAll(pane);
-			
+			FXMLController a = new FXMLController();
+			userPane.getChildren().setAll(a.loadThis());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -168,6 +176,8 @@ public class FXMLController_user implements Initializable{
 		User user = findInTableView();
 		if(dropID.getText().equals("")) {
 			Alerts.showAlert("Required field", "You have to digit some ID", AlertType.WARNING);
+			Main.tdl.speak("ENter the ID Please");
+			
 		}else {
 			userDAO.delete(user.getID());
 			attTableView();
@@ -181,6 +191,8 @@ public class FXMLController_user implements Initializable{
 				String userCPF = searchUser.getText();
 				if(userCPF.equals("")) {
 					Alerts.showAlert("Fill in all fields", "Required field cpf", AlertType.INFORMATION);
+					Main.tdl.speak("Enter the CPF Please");
+					
 				}else {
 					ObservableList<User> obs = FXCollections.observableArrayList();
 					try {
@@ -189,6 +201,8 @@ public class FXMLController_user implements Initializable{
 						} catch (DbException e) {
 							// TODO Auto-generated catch block
 								Alerts.showAlert("Not found", "User not found", AlertType.WARNING);
+								Main.tdl.speak("User not found, sorry sir");
+								
 						}
 						tbView.setItems(obs);
 
@@ -213,27 +227,33 @@ public class FXMLController_user implements Initializable{
 		
 	if(nameField.getText().equals("") || passwordField.getText().equals("") || CPFField.getText().equals("")) {
 		Alerts.showAlert("Fill in all fields", "We need all this data", AlertType.WARNING);
+		Main.tdl.speak("Fill in all fields");
+		
 	}else {
 		try {
 			if(!userDAO.findByCPF(CPFField.getText()).getCpf().equals(null)) {
 			
 				Alerts.showAlert("Fill in all fields", "CPF Already in use", AlertType.WARNING);
+				Main.tdl.speak("CPF is Already in use");
+				
 			}
 			
 		} catch (Exception e) {
 			if(ConferirDados.conferirCPF(CPFField.getText()) == false){
 				Alerts.showAlert("Fill in all fields", "Invalid CPF", AlertType.WARNING);
+				Main.tdl.speak("Invalid CPF");
+				
 			}
 			else {
 			User user = new User(nameField.getText(), CPFField.getText(), 0, true);
 			user.setPassword(passwordField.getText());
-			user.setSuperUser(Boolean.parseBoolean(ckSuperUser.getText()));
-
-			System.out.println(user);
+			user.setSuperUser(ckSuperUser.isSelected());
 			
 			userDAO.save(user);
 			attTableView();
 			Alerts.showAlert("Registered", "Registered with success", AlertType.INFORMATION);
+			Main.tdl.speak("Registered with sucess");
+			
 			}
 		}
 	}
@@ -247,7 +267,7 @@ public class FXMLController_user implements Initializable{
 		user.setCpf(updateCPFField.getText());
 		user.setPassword(updatePasswordField.getText());
 		user.setName(updateNameField.getText());
-		user.setSuperUser(Boolean.parseBoolean(updateSuperUserCK.getText()));
+		user.setSuperUser(updateSuperUserCK.isSelected());
 		
 		if(ConferirDados.conferirCPF(user.getCpf()) == false){
 			Alerts.showAlert("Fill in all fields", "Invalid CPF", AlertType.WARNING);

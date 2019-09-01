@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Paths;
 import java.util.ResourceBundle;
@@ -22,12 +23,21 @@ public class FXMLController implements Initializable {
 		
 	}
 	
+	public AnchorPane loadThis() throws IOException {
+		AnchorPane root = new AnchorPane();
+		
+		URL thisURL = this.getClass().getClassLoader().getResource("view/FXML_view.fxml");
+		root = FXMLLoader.load(thisURL);
+		return root;
+	}
+	
+	
 	@FXML
 	private void loadLendingView(ActionEvent event) {
 		try {
 			AnchorPane pane = new AnchorPane();
-			pane = FXMLLoader.<AnchorPane>load(Paths.get("src/view/FXML_lendingView.fxml").toUri().toURL());
-			root.getChildren().setAll(pane);
+			FXMLController_lending a = new FXMLController_lending();
+			root.getChildren().setAll(a.loadThis());
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -37,8 +47,8 @@ public class FXMLController implements Initializable {
 	private void loadReturningView(ActionEvent event) {
 		try {
 			AnchorPane pane = new AnchorPane();
-			pane = FXMLLoader.<AnchorPane>load(Paths.get("src/view/FXML_returningView.fxml").toUri().toURL());
-			root.getChildren().setAll(pane);
+			FXMLController_returning a = new FXMLController_returning();
+			root.getChildren().setAll(a.loadThis());
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -48,8 +58,8 @@ public class FXMLController implements Initializable {
 	private void loadUserView(ActionEvent event) {
 		try {
 			AnchorPane pane = new AnchorPane();
-			pane = FXMLLoader.<AnchorPane>load(Paths.get("src/view/FXML_userView.fxml").toUri().toURL());
-			root.getChildren().setAll(pane);
+			FXMLController_user a = new FXMLController_user();
+			root.getChildren().setAll(a.loadThis());
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -59,23 +69,13 @@ public class FXMLController implements Initializable {
 	private void loadBookView(ActionEvent event) {
 		try {
 			AnchorPane pane = new AnchorPane();
-			pane = FXMLLoader.<AnchorPane>load(Paths.get("src/view/FXML_bookView.fxml").toUri().toURL());
-			root.getChildren().setAll(pane);
+			FXMLController_book a = new FXMLController_book();
+			root.getChildren().setAll(a.loadThis());
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	@FXML
-	private void loadPenaltiesView(ActionEvent event) {
-		try {
-			AnchorPane pane = new AnchorPane();
-			pane = FXMLLoader.<AnchorPane>load(Paths.get("src/view/FXML_penaltiesView.fxml").toUri().toURL());
-			root.getChildren().setAll(pane);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+	
 
 }

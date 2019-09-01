@@ -1,21 +1,21 @@
 package controller;
 
+import java.io.IOException;
 import java.net.URL;
-import java.nio.file.Paths;
-import java.sql.Connection;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import application.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
@@ -87,6 +87,8 @@ public class FXMLController_returning implements Initializable{
 		attTbView();
 		
 		Alerts.showAlert("Success", "Returned: "+book.getName()+" By: "+user.getName(), AlertType.INFORMATION);
+		Main.tdl.speak("Returned: "+book.getName()+" By: "+user.getName());
+		
 	}
 	
 	public void onKeyPressed(){
@@ -125,13 +127,21 @@ public class FXMLController_returning implements Initializable{
 		tbView.setItems(obs);
 	}
 	
+	public AnchorPane loadThis() throws IOException {
+		AnchorPane root = new AnchorPane();
+		
+		URL thisURL = this.getClass().getClassLoader().getResource("view/FXML_returningView.fxml");
+		root = FXMLLoader.load(thisURL);
+		return root;
+	}
+	
+	
 	@FXML
 	private void loadView(ActionEvent event) {
 		try {
 			AnchorPane pane = new AnchorPane();
-			pane = FXMLLoader.<AnchorPane>load(Paths.get("src/view/FXML_view.fxml").toUri().toURL());
-			returningPane.getChildren().setAll(pane);
-			
+			FXMLController a = new FXMLController();
+			returningPane.getChildren().setAll(a.loadThis());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

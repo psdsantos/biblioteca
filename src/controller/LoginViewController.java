@@ -1,30 +1,26 @@
 package controller;
 
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import com.mysql.cj.x.protobuf.MysqlxExpect.Open.Condition.Key;
-
+import application.Main;
 import application.MainSuperUser;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyCodeCombination;
-import javafx.scene.input.KeyCombination;
-import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import model.dao.DaoFactory;
 import model.dao.UserDAOJDBC;
-import model.db.DbException;
 import model.entities.User;
 import model.util.Alerts;
 import model.util.Constraints;
@@ -32,34 +28,37 @@ import model.util.Constraints;
 public class LoginViewController implements Initializable {
 
 	@FXML
-	ImageView loginImage;
+	private CheckBox ckBox;
+	
+	@FXML
+	private ImageView loginImage;
 
 	@FXML
-	PasswordField passwordField;
+	private PasswordField passwordField;
 
 	@FXML
-	Label passwordLabel;
+	private Label passwordLabel;
 
 	@FXML
-	Label CPFLabel;
+	private 	Label CPFLabel;
 
 	@FXML
-	ImageView myCorpImg;
+	private ImageView myCorpImg;
 
 	@FXML
-	Label sdsPedro;
+	private Label sdsPedro;
 
 	@FXML
-	Label and;
+	private Label and;
 
 	@FXML
-	Label EddieSCJ;
+	private Label EddieSCJ;
 
 	@FXML
-	Button enterButton;
+	private Button enterButton;
 
 	@FXML
-	TextField CPFField;
+	private TextField CPFField;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -76,6 +75,8 @@ public class LoginViewController implements Initializable {
 			if (evt.getCode() == KeyCode.ENTER) {
 				if (CPFField.getText().equalsIgnoreCase("") || passwordField.getText().equalsIgnoreCase("")) {
 					Alerts.showAlert("Null field", "You didn't enter the login CPF or password", AlertType.INFORMATION);
+					Main.tdl.speak("You didn't enter the login CPF or password");
+					
 				} else {
 
 					UserDAOJDBC userDAOJDBC = DaoFactory.createUserDaojdbc();
@@ -86,8 +87,7 @@ public class LoginViewController implements Initializable {
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 
-						Alerts.showAlert("Incorrect data", "Incorrect cpf or password", AlertType.WARNING);
-					}
+							}
 					if(user!= null) {
 					if (user.getPassword().equals(passwordField.getText())) {
 						if (user.isSuperUser()) {
@@ -100,15 +100,18 @@ public class LoginViewController implements Initializable {
 							stage.close();
 
 						} else {
-
+							Alerts.showAlert("Only for adminstration users", "Only adminstration users can login", AlertType.CONFIRMATION);
+							Main.tdl.speak("Only adminstration users can login, SO CURIOUS. WHAT DO YOU WANT HERE?");
 						}
 
 					} else {
 						Alerts.showAlert("Incorrect data", "Incorrect cpf or password", AlertType.WARNING);
+						Main.tdl.speak("Incorrect CPF or Passsword");
 					}
 				}
 				else {
 					Alerts.showAlert("Incorrect data", "Incorrect cpf or password", AlertType.WARNING);
+					Main.tdl.speak("Incorrect CPF or Passsword");
 				}
 
 			}
@@ -127,6 +130,7 @@ public class LoginViewController implements Initializable {
 
 				if (CPFField.getText().equalsIgnoreCase("") || passwordField.getText().equalsIgnoreCase("")) {
 					Alerts.showAlert("Null field", "You didn't enter the login CPF or password", AlertType.INFORMATION);
+					Main.tdl.speak("You didn't enter the login CPF or password");
 				} else {
 
 					UserDAOJDBC userDAOJDBC = DaoFactory.createUserDaojdbc();
@@ -137,6 +141,7 @@ public class LoginViewController implements Initializable {
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						Alerts.showAlert("Incorrect data", "Incorrect cpf or password", AlertType.WARNING);
+						Main.tdl.speak("Incorrect CPF or Passsword");
 					}
 
 					if (user.getPassword().equals(passwordField.getText())) {
@@ -154,6 +159,8 @@ public class LoginViewController implements Initializable {
 						
 					}else {
 						Alerts.showAlert("Incorrect data", "Incorrect cpf or password", AlertType.WARNING);
+						Main.tdl.speak("Incorrect CPF or Passsword");
+						
 					}
 				}
 			}

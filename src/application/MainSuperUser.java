@@ -1,5 +1,6 @@
 package application;
 
+import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Paths;
 
@@ -12,13 +13,20 @@ import javafx.stage.Stage;
 
 public class MainSuperUser {
 
+	public AnchorPane loadThis() throws IOException {
+		AnchorPane root = new AnchorPane();
+		
+		URL thisURL = this.getClass().getClassLoader().getResource("view/FXML_view.fxml");
+		root = FXMLLoader.load(thisURL);
+		return root;
+	}
+	
 	public void startGUI() {
 		try 
 		{
 			AnchorPane root;
 			
 			Stage primaryStage = new Stage();
-			System.out.println("AAAAAAAA");
 			URL thisURL = this.getClass().getClassLoader().getResource("view/FXML_view.fxml");
 			
 			root = new FXMLLoader(thisURL).load();
@@ -28,7 +36,7 @@ public class MainSuperUser {
 			primaryStage.setTitle("Data game");
 			
 			primaryStage.setScene(myScene);
-			
+			primaryStage.setResizable(false);
 			primaryStage.show();
 			
 			}catch(Exception e) {

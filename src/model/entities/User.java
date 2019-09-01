@@ -85,7 +85,7 @@ public class User {
 	
 	public void addBooks(Book book) {
 		System.out.println(getBorrowedBooksCount());
-		if(this.getBorrowedBooksCount()+1>=3) {
+		if((this.getBorrowedBooksCount()+1)>=3) {
 			this.setStatus(false);
 			Alerts.showAlert("Maximum", "You have three books, it is the limit", AlertType.WARNING);
 			}else {

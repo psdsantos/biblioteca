@@ -22,7 +22,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="18.0" layoutY="27.0" text="Cadastrar novo livro">
+      <Label layoutX="18.0" layoutY="27.0" text="Register new book">
          <font>
             <Font name="Impact" size="21.0" />
          </font>
@@ -46,7 +46,7 @@
             <Font name="Impact" size="21.0" />
          </font>
       </Label>
-      <Label layoutX="18.0" layoutY="199.0" text="Atualizar livro">
+      <Label layoutX="18.0" layoutY="199.0" text="Update book">
          <font>
             <Font name="Impact" size="21.0" />
          </font>
@@ -56,7 +56,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="18.0" layoutY="415.0" text="Deletar livro">
+      <Label layoutX="18.0" layoutY="415.0" text="Delete book">
          <font>
             <Font name="Impact" size="21.0" />
          </font>
@@ -74,7 +74,7 @@
       </Label>
       <TextField fx:id="deleteField" editable="false" layoutX="85.0" layoutY="496.0" promptText="Name" />
       <Button fx:id="deleteButton" layoutX="18.0" layoutY="536.0" mnemonicParsing="false" onAction="#onDeleteButton" prefHeight="25.0" prefWidth="63.0" text="Delete" />
-      <Button layoutX="18.0" layoutY="602.0" mnemonicParsing="false" onAction="#loadView" prefHeight="25.0" prefWidth="252.0" text="Cancelar" />
+      <Button layoutX="18.0" layoutY="602.0" mnemonicParsing="false" onAction="#loadView" prefHeight="25.0" prefWidth="252.0" text="Cancel" />
       <Label layoutX="18.0" layoutY="279.0" text="Name">
          <font>
             <Font size="18.0" />

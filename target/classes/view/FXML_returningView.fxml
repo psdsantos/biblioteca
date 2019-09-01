@@ -28,7 +28,7 @@
       </Label>
       <Button layoutX="14.0" layoutY="355.0" mnemonicParsing="false" onAction="#loadView" prefHeight="25.0" prefWidth="252.0" text="Cancel" />
       <Label layoutX="40.0" layoutY="157.0" />
-      <TextField fx:id="bookNameSearch" layoutX="25.0" layoutY="143.0" onKeyPressed="#onKeyPressed" prefHeight="29.0" prefWidth="252.0" promptText="Book name" />
+      <TextField fx:id="bookNameSearch" layoutX="25.0" layoutY="143.0" onKeyPressed="#onKeyPressed" prefHeight="29.0" prefWidth="303.0" promptText="Book name" />
       <ImageView fitHeight="25.0" fitWidth="18.0" layoutX="5.0" layoutY="146.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../resources/search.png" />
@@ -47,12 +47,12 @@
             <Font name="Impact" size="56.0" />
          </font>
       </Label>
-      <ScrollPane layoutX="14.0" layoutY="180.0" prefHeight="161.0" prefWidth="252.0">
+      <ScrollPane layoutX="14.0" layoutY="180.0" prefHeight="161.0" prefWidth="316.0">
          <content>
             <TableView fx:id="tbView" onMouseClicked="#onMouseClicked" prefHeight="874.0" prefWidth="380.0">
                <columns>
                   <TableColumn fx:id="idColumn" prefWidth="43.0" text="Id" />
-                  <TableColumn fx:id="nameColumn" prefWidth="227.0" text="Name" />
+                  <TableColumn fx:id="nameColumn" prefWidth="336.0" text="Name" />
                </columns>
             </TableView>
          </content>

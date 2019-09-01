@@ -1,17 +1,17 @@
 package controller;
 
+import java.io.IOException;
 import java.net.URL;
-import java.nio.file.Paths;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import application.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -84,13 +84,21 @@ public class FXMLController_book implements Initializable{
 		return obs;
 	}
 	
+	public AnchorPane loadThis() throws IOException {
+		AnchorPane root = new AnchorPane();
+		
+		URL thisURL = this.getClass().getClassLoader().getResource("view/FXML_bookView.fxml");
+		root = FXMLLoader.load(thisURL);
+		return root;
+	}
+	
+	
 	@FXML
 	private void loadView(ActionEvent event) {
 		try {
 			AnchorPane pane = new AnchorPane();
-			pane = FXMLLoader.<AnchorPane>load(Paths.get("src/view/FXML_view.fxml").toUri().toURL());
-			bookPane.getChildren().setAll(pane);
-			
+			FXMLController a = new FXMLController();
+			bookPane.getChildren().setAll(a.loadThis());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -100,6 +108,8 @@ public class FXMLController_book implements Initializable{
 		Integer id = tbView.getSelectionModel().getSelectedItem().getId();
 		Book book = bookDAOJDBC.findByID(id);
 		if(book==null) {
+
+			Main.tdl.speak("Book not found, sorry sir");
 			throw new Exception("Book not found");
 		}
 		return book;
@@ -118,7 +128,8 @@ public class FXMLController_book implements Initializable{
 			}
 				else {
 					Alerts.showAlert("No name", "Enter name", AlertType.INFORMATION);
-						
+					Main.tdl.speak("enter a name please");
+								
 				}
 			}
 		});
@@ -133,6 +144,9 @@ public class FXMLController_book implements Initializable{
 			
 		}catch(Exception e) {
 			Alerts.showAlert("Not found", "Book not found", AlertType.WARNING);
+			Main.tdl.speak("Book not found, sorry sir");
+			
+			
 		}
 		
 		
@@ -150,11 +164,17 @@ public class FXMLController_book implements Initializable{
 			bookDAOJDBC.update(book);
 			attTableView();
 			Alerts.showAlert("Updated with success", "YEAH", AlertType.INFORMATION);
+
+			Main.tdl.speak("UPDATED WITH SUCCESS. YEAHHH");
 		}else {
 			Alerts.showAlert("Name", "Enter a book name", AlertType.INFORMATION);
+
+			Main.tdl.speak("ENTER A BOOK NAME PLEASE");
 		}
 		}catch(Exception e) {
 			Alerts.showAlert("Not found", "Book not found", AlertType.WARNING);
+
+			Main.tdl.speak("Book not found, sorry sir");
 		}
 		
 	}
@@ -164,9 +184,12 @@ public class FXMLController_book implements Initializable{
 			bookDAOJDBC.save(book);
 			attTableView();
 			Alerts.showAlert("Saved with success", "YEAH", AlertType.INFORMATION);
+			Main.tdl.speak("SAVED WITH SUCCESS. YEAHHH");
+			
 		}else {
 			Alerts.showAlert("Name", "Enter a book name", AlertType.INFORMATION);
-					
+			Main.tdl.speak("ENTER A BOOK NAME PLEASE");
+						
 		}
 	}
 	public void onDeleteButton() {
@@ -177,10 +200,12 @@ public class FXMLController_book implements Initializable{
 			attTableView();
 		}else {
 			Alerts.showAlert("Name", "Enter a book name", AlertType.INFORMATION);
-				
+			Main.tdl.speak("Book not found, sorry sir");
+							
 		}
 		}catch(Exception e) {
 			Alerts.showAlert("Not found", "Book not found", AlertType.WARNING);
+			Main.tdl.speak("Book not found, sorry sir");
 					
 		}
 	}
