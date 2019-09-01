@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="bookPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="634.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLController_book">
+<AnchorPane fx:id="bookPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="634.0" prefWidth="800.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLController_book">
    <children>
       <Label layoutX="18.0" layoutY="66.0" text="Name">
          <font>
@@ -36,9 +36,9 @@
       </TableView>
       <Label layoutX="305.0" layoutY="74.0" />
       <TextField fx:id="searchField" layoutX="305.0" layoutY="60.0" onKeyPressed="#onKeyPressed" prefHeight="29.0" prefWidth="450.0" promptText="Name" />
-      <ImageView fitHeight="25.0" fitWidth="18.0" layoutX="279.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="29.0" fitWidth="23.0" layoutX="279.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../resources/search.png" />
+            <Image url="@depositphotos_59610745-stock-photo-human-character-and-question-mark.jpg" />
          </image>
       </ImageView>
       <Label layoutX="279.0" layoutY="27.0" text="Search Book">

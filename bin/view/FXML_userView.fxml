@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="userPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="779.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLController_user">
+   <children>
+      <Label layoutX="279.0" layoutY="326.0" text="Drop user">
+         <font>
+            <Font name="Impact" size="21.0" />
+         </font>
+      </Label>
+      <Label layoutX="279.0" layoutY="350.0" prefHeight="40.0" prefWidth="185.0" text="Select on the table the user you want to delete" wrapText="true">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="279.0" layoutY="403.0" text="Id">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="dropID" editable="false" layoutX="309.0" layoutY="401.0" promptText="Id" />
+      <Button fx:id="dropButton" layoutX="274.0" layoutY="439.0" mnemonicParsing="false" onAction="#onDropButton" prefHeight="25.0" prefWidth="63.0" text="Drop" />
+      <Button layoutX="616.0" layoutY="499.0" mnemonicParsing="false" onAction="#loadView" prefHeight="29.0" prefWidth="143.0" text="Come back" />
+      <Label layoutX="18.0" layoutY="66.0" text="Name">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="18.0" layoutY="96.0" text="CPF">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="18.0" layoutY="27.0" text="Register new user">
+         <font>
+            <Font name="Impact" size="21.0" />
+         </font>
+      </Label>
+      <TextField fx:id="nameField" layoutX="85.0" layoutY="67.0" promptText="Name" />
+      <TextField fx:id="CPFField" layoutX="85.0" layoutY="97.0" promptText="CPF" />
+      <Label layoutX="305.0" layoutY="74.0" />
+      <TextField fx:id="searchUser" layoutX="305.0" layoutY="62.0" onKeyPressed="#onSearchUser" prefHeight="29.0" prefWidth="454.0" promptText="User CPF" />
+      <ImageView fitHeight="31.0" fitWidth="32.0" layoutX="273.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@depositphotos_59610745-stock-photo-human-character-and-question-mark.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="279.0" layoutY="27.0" text="Search User">
+         <font>
+            <Font name="Impact" size="21.0" />
+         </font>
+      </Label>
+      <Label layoutX="17.0" layoutY="263.0" text="Update user">
+         <font>
+            <Font name="Impact" size="21.0" />
+         </font>
+      </Label>
+      <Label layoutX="18.0" layoutY="294.0" prefHeight="40.0" prefWidth="185.0" text="Select on the table the user you want to update data" wrapText="true">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="updateButton" layoutX="9.0" layoutY="470.0" mnemonicParsing="false" onAction="#onUpdateButton" prefHeight="29.0" prefWidth="84.0" text="Update" />
+      <Button fx:id="registerButton" layoutX="10.0" layoutY="195.0" mnemonicParsing="false" onAction="#OnRegisterUser" prefHeight="29.0" prefWidth="84.0" text="Register" />
+      <Label layoutX="11.0" layoutY="341.0" text="Name">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="11.0" layoutY="376.0" text="CPF">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="updateNameField" layoutX="76.0" layoutY="341.0" promptText="Name" />
+      <TextField fx:id="updateCPFField" layoutX="76.0" layoutY="374.0" promptText="CPF" />
+      <Label layoutX="17.0" layoutY="128.0" text="PWD">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <PasswordField fx:id="passwordField" layoutX="85.0" layoutY="126.0" promptText="Password" />
+      <CheckBox fx:id="updateSuperUserCK" layoutX="76.0" layoutY="444.0" mnemonicParsing="false" text="SuperUser" />
+      <PasswordField fx:id="updatePasswordField" layoutX="74.0" layoutY="409.0" prefHeight="29.0" prefWidth="162.0" promptText="Password" />
+      <Label layoutX="11.0" layoutY="411.0" text="PWD">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <CheckBox fx:id="ckSuperUser" layoutX="85.0" layoutY="163.0" mnemonicParsing="false" text="SuperUser" />
+      <ScrollPane layoutX="279.0" layoutY="95.0" prefHeight="224.0" prefWidth="481.0">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="225.0" prefWidth="478.0">
+               <children>
+                  <TableView fx:id="tbView" layoutX="-2.0" layoutY="-8.0" onMouseClicked="#onMouseClicked" prefHeight="233.0" prefWidth="481.0">
+                    <columns>
+                        <TableColumn fx:id="idColumn" prefWidth="58.0" text="Id" />
+                      <TableColumn fx:id="nameCOlumn" minWidth="0.0" prefWidth="203.0" text="Name" />
+                      <TableColumn fx:id="cpfColumn" minWidth="0.0" prefWidth="139.0" text="CPF" />
+                        <TableColumn fx:id="booksColumn" prefWidth="78.0" text="Books" />
+                    </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

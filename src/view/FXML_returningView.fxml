@@ -17,21 +17,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="returningPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLController_returning">
+<AnchorPane fx:id="returningPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLController_returning">
    <children>
       <Button layoutX="334.0" layoutY="355.0" mnemonicParsing="false" onAction="#onConfirmButton" prefHeight="25.0" prefWidth="252.0" text="Confirm" />
-      <TextField fx:id="bookIDReturn" editable="false" layoutX="347.0" layoutY="143.0" prefHeight="25.0" prefWidth="210.0" promptText="Book ID" />
-      <Label layoutX="347.0" layoutY="118.0" text="Id">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
+      <TextField fx:id="bookIDReturn" editable="false" layoutX="376.0" layoutY="143.0" prefHeight="25.0" prefWidth="210.0" promptText="Book ID" />
       <Button layoutX="14.0" layoutY="355.0" mnemonicParsing="false" onAction="#loadView" prefHeight="25.0" prefWidth="252.0" text="Cancel" />
       <Label layoutX="40.0" layoutY="157.0" />
-      <TextField fx:id="bookNameSearch" layoutX="25.0" layoutY="143.0" onKeyPressed="#onKeyPressed" prefHeight="29.0" prefWidth="303.0" promptText="Book name" />
-      <ImageView fitHeight="25.0" fitWidth="18.0" layoutX="5.0" layoutY="146.0" pickOnBounds="true" preserveRatio="true">
+      <TextField fx:id="bookNameSearch" layoutX="26.0" layoutY="143.0" onKeyPressed="#onKeyPressed" prefHeight="29.0" prefWidth="303.0" promptText="Book name" />
+      <ImageView fitHeight="29.0" fitWidth="23.0" layoutX="3.0" layoutY="146.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../resources/search.png" />
+            <Image url="@depositphotos_59610745-stock-photo-human-character-and-question-mark.jpg" />
          </image>
       </ImageView>
       <Label layoutX="201.0" text="Returning">
@@ -49,7 +44,7 @@
       </Label>
       <ScrollPane layoutX="14.0" layoutY="180.0" prefHeight="161.0" prefWidth="316.0">
          <content>
-            <TableView fx:id="tbView" onMouseClicked="#onMouseClicked" prefHeight="874.0" prefWidth="380.0">
+            <TableView fx:id="tbView" onMouseClicked="#onMouseClicked" prefHeight="874.0" prefWidth="380.0" style="-fx-background-color: white;">
                <columns>
                   <TableColumn fx:id="idColumn" prefWidth="43.0" text="Id" />
                   <TableColumn fx:id="nameColumn" prefWidth="336.0" text="Name" />
@@ -57,5 +52,10 @@
             </TableView>
          </content>
       </ScrollPane>
+      <ImageView fitHeight="29.0" fitWidth="23.0" layoutX="353.0" layoutY="145.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@depositphotos_59610745-stock-photo-human-character-and-question-mark.jpg" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
