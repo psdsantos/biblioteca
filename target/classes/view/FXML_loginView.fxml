@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
@@ -16,13 +17,13 @@
                </image>
             </ImageView>
             <PasswordField fx:id="passwordField" layoutX="207.0" layoutY="234.0" onKeyPressed="#onKeyPressed" prefHeight="29.0" prefWidth="215.0" promptText="Password" />
-            <Label fx:id="passwordLabel" layoutX="278.0" layoutY="213.0" text="Password" textAlignment="CENTER" textFill="WHITE">
+            <Label fx:id="passwordLabel" alignment="CENTER" layoutX="278.0" layoutY="206.0" prefHeight="21.0" prefWidth="79.0" style="-fx-background-color: black; -fx-background-radius: 20;" text="Password" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="System Bold Italic" size="15.0" />
                </font>
             </Label>
             <TextField fx:id="CPFField" layoutX="203.0" layoutY="147.0" prefHeight="29.0" prefWidth="222.0" promptText="xxx.xxx.xxx-xx" />
-            <Label fx:id="CPFLabel" layoutX="300.0" layoutY="120.0" text="CPF" textAlignment="CENTER" textFill="WHITE">
+            <Label fx:id="CPFLabel" alignment="CENTER" layoutX="299.0" layoutY="120.0" prefHeight="21.0" prefWidth="37.0" style="-fx-background-color: black; -fx-background-radius: 20;" text="CPF" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="System Bold Italic" size="15.0" />
                </font>
@@ -32,17 +33,17 @@
                   <Image url="@img12-removebg-preview.png" />
                </image>
             </ImageView>
-            <Label fx:id="sdsPedro" layoutX="13.0" layoutY="75.0" opacity="0.11" text="sdsPedro ">
+            <Label fx:id="sdsPedro" layoutX="13.0" layoutY="75.0" text="sdsPedro ">
                <font>
                   <Font name="System Bold Italic" size="10.0" />
                </font>
             </Label>
-            <Label fx:id="and" layoutX="26.0" layoutY="90.0" opacity="0.11" text="and ">
+            <Label fx:id="and" layoutX="26.0" layoutY="90.0" text="and ">
                <font>
                   <Font name="System Bold Italic" size="10.0" />
                </font>
             </Label>
-            <Label fx:id="EddieSCJ" layoutX="15.0" layoutY="105.0" opacity="0.11" text="EddieSCJ ">
+            <Label fx:id="EddieSCJ" layoutX="15.0" layoutY="105.0" text="EddieSCJ ">
                <font>
                   <Font name="System Bold Italic" size="10.0" />
                </font>
