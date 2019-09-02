@@ -7,11 +7,11 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginViewController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="396.0" prefWidth="590.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginViewController">
    <children>
       <AnchorPane prefHeight="400.0" prefWidth="611.0">
          <children>
-            <ImageView fx:id="loginImage" fitHeight="400.0" fitWidth="599.0" pickOnBounds="true">
+            <ImageView fx:id="loginImage" fitHeight="400.0" fitWidth="600.0" pickOnBounds="true">
                <image>
                   <Image url="@getty_883231284_200013331818843182490_335833.jpg" />
                </image>
@@ -48,7 +48,12 @@
                   <Font name="System Bold Italic" size="10.0" />
                </font>
             </Label>
-            <Button fx:id="enterButton" layoutX="272.0" layoutY="271.0" mnemonicParsing="false" onAction="#onEnterAction" opacity="0.79" prefHeight="29.0" prefWidth="85.0" text="Enter" textFill="#141414" />
+            <Button fx:id="enterButton" layoutX="272.0" layoutY="271.0" mnemonicParsing="false" onAction="#onEnterAction" prefHeight="29.0" prefWidth="85.0" text="Enter" textFill="#141414" />
+            <CheckBox fx:id="ckBox" layoutX="337.0" layoutY="321.0" mnemonicParsing="false" text="Activate the visual deficient mode">
+               <font>
+                  <Font name="System Bold Italic" size="14.0" />
+               </font>
+            </CheckBox>
          </children>
       </AnchorPane>
    </children>

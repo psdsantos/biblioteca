@@ -5,7 +5,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import application.Main;
+import application.Main2;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -27,6 +27,7 @@ import model.entities.Book;
 import model.entities.User;
 import model.util.Alerts;
 import model.util.Constraints;
+import voiceSpeak.Trying_Different_Languages;
 
 public class FXMLController_lending implements Initializable{
 	
@@ -66,15 +67,19 @@ public class FXMLController_lending implements Initializable{
 	@FXML 
 	Button confirmButton;
 	
+	private Boolean permission = LoginViewController.permission;
+	
+	private Trying_Different_Languages tdl = new Trying_Different_Languages();
+	
 	private BookDAOJDBC bookDAOJDBC = DaoFactory.createBookDAOJDBC();
 	private UserDAOJDBC userDAOJDBC = DaoFactory.createUserDaojdbc();
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		Constraints.setTextFieldMaxLength(searchBookField, 30);
+		Constraints.setTextFieldMaxLength(searchBookField, 40);
 		Constraints.setTextFieldMaxLength(cpfField, 14);
-		Constraints.setTextFieldMaxLength(searchUserField, 30);
-		Constraints.setTextFieldMaxLength(bookField, 30);
+		Constraints.setTextFieldMaxLength(searchUserField, 40);
+		Constraints.setTextFieldMaxLength(bookField, 40);
 		
 		
 		cpfColumn.setCellValueFactory(new PropertyValueFactory<>("cpf"));
@@ -99,7 +104,7 @@ public class FXMLController_lending implements Initializable{
 	public void onSearchUserField() {
 		searchUserField.setOnKeyPressed(evt -> {
 			if(evt.getCode()==KeyCode.ENTER) {
-				if(searchUserField.getText().equalsIgnoreCase("")) {
+				if(!searchUserField.getText().equalsIgnoreCase("")) {
 				
 					ObservableList<User> obs = FXCollections.observableArrayList();
 					
@@ -107,7 +112,7 @@ public class FXMLController_lending implements Initializable{
 						obs.add(userDAOJDBC.findByCPF(searchUserField.getText()));
 					} catch (Exception e) {
 						Alerts.showAlert("Not found", "User not found", AlertType.WARNING);
-						Main.tdl.speak("User not found, sorry sir");
+						tdl.speak("User not found, sorry sir");
 						
 					} 
 					
@@ -116,6 +121,30 @@ public class FXMLController_lending implements Initializable{
 				}
 			}
 		});
+	}
+	
+	public void onCancel() {
+		if(permission) {
+			tdl.speak("cancel");
+		}
+	}
+	
+	public void onConfirm() {
+		if(permission) {
+			tdl.speak("Confirm");
+		}
+	}
+	
+	public void onSearchCPF() {
+		if(permission) {
+			tdl.speak("Type the user cpf here");
+		}
+	}
+	
+	public void onSearchBook() {
+		if(permission) {
+			tdl.speak("Type the book name here");
+		}
 	}
 	
 	public void onMouse_BookClicked() {
@@ -150,13 +179,13 @@ public class FXMLController_lending implements Initializable{
 		userDAOJDBC.update(user);
 		bookDAOJDBC.update(book);
 		
-		Alerts.showAlert("One book borrowed", "You take the "+book.getName(), AlertType.INFORMATION);
-		Main.tdl.speak(user.getName()+" Take the: "+book.getName()+" book");
+		Alerts.showAlert("One book borrowed", "You took the "+book.getName(), AlertType.INFORMATION);
+		tdl.speak(user.getName()+" took the: "+book.getName()+" book");
 		
 		}
 		else {
 			Alerts.showAlert("Already Borrowed", "This book "+book.getName()+" is already borrowed or you already have 3 books", AlertType.INFORMATION);
-			Main.tdl.speak("Already borrowed, try again in few days");
+			tdl.speak("Already borrowed, try again in few days");
 					
 		}
 		}
@@ -164,7 +193,7 @@ public class FXMLController_lending implements Initializable{
 	public void onSearchBookField() {
 		searchBookField.setOnKeyPressed(evt -> {
 			if(evt.getCode()==KeyCode.ENTER) {
-				if(searchBookField.getText().equalsIgnoreCase("")) {
+				if(!searchBookField.getText().equalsIgnoreCase("")) {
 				
 					ObservableList<Book> obs = FXCollections.observableArrayList();
 					
@@ -172,7 +201,7 @@ public class FXMLController_lending implements Initializable{
 						obs.addAll(bookDAOJDBC.findByName(searchBookField.getText()));
 					} catch (Exception e) {
 						Alerts.showAlert("Not found", "User not found", AlertType.WARNING);
-						Main.tdl.speak("User not found, sorry sir");
+						tdl.speak("User not found, sorry sir");
 						
 					} 
 					

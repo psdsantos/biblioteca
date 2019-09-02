@@ -5,7 +5,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import application.Main;
+import application.Main2;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -25,6 +25,7 @@ import model.dao.UserDAOJDBC;
 import model.entities.Book;
 import model.entities.User;
 import model.util.Alerts;
+import voiceSpeak.Trying_Different_Languages;
 
 public class FXMLController_returning implements Initializable{
 	
@@ -47,6 +48,10 @@ public class FXMLController_returning implements Initializable{
 	private  TableColumn<Book, String> nameColumn;
 	
 	private BookDAOJDBC bookDAOJDBC = DaoFactory.createBookDAOJDBC();
+	
+	private Trying_Different_Languages tdl = new Trying_Different_Languages();
+	
+	private Boolean permission = LoginViewController.permission;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -71,6 +76,23 @@ public class FXMLController_returning implements Initializable{
 		
 	}
 	
+	public void onConfirm() {
+		if(permission) {
+			tdl.speak("Confirm");
+		}
+	}
+	
+	public void onSearchBook() {
+		if(permission) {
+			tdl.speak("Type the name of the book here");
+		}
+	}
+	
+	public void onCancel() {
+		if(permission) {
+			tdl.speak("Cancel");
+		}
+	}
 	
 	
 	public void onConfirmButton() {
@@ -87,7 +109,7 @@ public class FXMLController_returning implements Initializable{
 		attTbView();
 		
 		Alerts.showAlert("Success", "Returned: "+book.getName()+" By: "+user.getName(), AlertType.INFORMATION);
-		Main.tdl.speak("Returned: "+book.getName()+" By: "+user.getName());
+		tdl.speak("Returned: "+book.getName()+" By: "+user.getName());
 		
 	}
 	

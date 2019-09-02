@@ -11,12 +11,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import voiceSpeak.Trying_Different_Languages;
 
 public class FXMLController implements Initializable {
 
+	private Boolean permission = LoginViewController.permission;
+	
 	@FXML
 	private AnchorPane root;
 	
+	private Trying_Different_Languages tdl = new Trying_Different_Languages();
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -32,6 +36,29 @@ public class FXMLController implements Initializable {
 	}
 	
 	
+	public void onManageUsers() {
+		if(permission) {
+		tdl.speak("Manage users");
+	}
+	}
+	
+	public void onLend() {
+		if(permission) {
+			tdl.speak("Lend books");
+		}
+	}
+	
+	public void onReturn() {
+		if(permission) {
+			tdl.speak("Return books");
+		}
+	}
+	
+	public void onManageBooks() {
+		if(permission) {
+			tdl.speak("Manage books");
+		}
+	}
 	@FXML
 	private void loadLendingView(ActionEvent event) {
 		try {

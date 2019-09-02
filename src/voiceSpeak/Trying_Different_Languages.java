@@ -62,6 +62,7 @@ public class Trying_Different_Languages {
 				
 				System.out.println("Successfully got back synthesizer data");
 				
+				
 			} catch (IOException | JavaLayerException e) {
 				
 				e.printStackTrace(); //Print the exception ( we want to know , not hide below our finger , like many developers do...)

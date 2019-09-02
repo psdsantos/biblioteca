@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import application.Main;
+import application.Main2;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -30,9 +30,12 @@ import model.entities.User;
 import model.util.Alerts;
 import model.util.ConferirDados;
 import model.util.Constraints;
+import voiceSpeak.Trying_Different_Languages;
 
 public class FXMLController_user implements Initializable {
 
+	private Boolean permission = LoginViewController.permission;
+	
 	@FXML
 	TextField dropID;
 
@@ -92,6 +95,8 @@ public class FXMLController_user implements Initializable {
 
 	private UserDAOJDBC userDAO = DaoFactory.createUserDaojdbc();;
 
+	private Trying_Different_Languages tdl = new Trying_Different_Languages();
+	
 	public ObservableList<User> initList() {
 
 		ObservableList<User> obs = FXCollections.observableArrayList();
@@ -109,6 +114,36 @@ public class FXMLController_user implements Initializable {
 
 	}
 
+	public void onRegister(){
+		if(permission) {
+			tdl.speak("Register");
+		}
+	}
+	
+	public void onCancel(){
+		if(permission) {
+			tdl.speak("Cancel");
+		}
+	}
+	
+	public void onUpdate(){
+		if(permission) {
+			tdl.speak("Update");
+		}
+	}
+	
+	public void onSearch(){
+		if(permission) {
+			tdl.speak("Type the CPF Here");
+		}
+	}
+	
+	public void onDrop(){
+		if(permission) {
+			tdl.speak("Drop");
+		}
+	}
+	
 	public User findInTableView() {
 		Integer id = tbView.getSelectionModel().getSelectedItem().getID();
 		User userBD = userDAO.findByID(id);
@@ -133,7 +168,7 @@ public class FXMLController_user implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		Constraints.setTextFieldMaxLength(CPFField, 14);
-		Constraints.setTextFieldMaxLength(nameField, 40);
+		Constraints.setTextFieldMaxLength(nameField, 30);
 		Constraints.setTextFieldMaxLength(passwordField, 30);
 		Constraints.setTextFieldMaxLength(searchUser, 40);
 		Constraints.setTextFieldMaxLength(updateCPFField, 14);
@@ -173,7 +208,7 @@ public class FXMLController_user implements Initializable {
 		User user = findInTableView();
 		if (dropID.getText().equals("")) {
 			Alerts.showAlert("Required field", "You have to digit some ID", AlertType.WARNING);
-			Main.tdl.speak("ENter the ID Please");
+			tdl.speak("ENter the ID Please");
 
 		} else {
 			userDAO.delete(user.getID());
@@ -188,7 +223,7 @@ public class FXMLController_user implements Initializable {
 				String userCPF = searchUser.getText();
 				if (userCPF.equals("")) {
 					Alerts.showAlert("Fill in all fields", "Required field cpf", AlertType.INFORMATION);
-					Main.tdl.speak("Enter the CPF Please");
+					tdl.speak("Enter the CPF Please");
 
 				} else {
 					ObservableList<User> obs = FXCollections.observableArrayList();
@@ -198,7 +233,7 @@ public class FXMLController_user implements Initializable {
 						} catch (DbException e) {
 							// TODO Auto-generated catch block
 							Alerts.showAlert("Not found", "User not found", AlertType.WARNING);
-							Main.tdl.speak("User not found, sorry sir");
+							tdl.speak("User not found, sorry sir");
 
 						}
 						tbView.setItems(obs);
@@ -218,21 +253,21 @@ public class FXMLController_user implements Initializable {
 
 		if (nameField.getText().equals("") || passwordField.getText().equals("") || CPFField.getText().equals("")) {
 			Alerts.showAlert("Fill in all fields", "We need all this data", AlertType.WARNING);
-			Main.tdl.speak("Fill in all fields");
+			tdl.speak("Fill in all fields");
 
 		} else {
 			try {
 				if (!userDAO.findByCPF(CPFField.getText()).getCpf().equals(null)) {
 
 					Alerts.showAlert("Fill in all fields", "CPF Already in use", AlertType.WARNING);
-					Main.tdl.speak("CPF is Already in use");
+					tdl.speak("CPF is Already in use");
 
 				}
 
 			} catch (Exception e) {
 				if (ConferirDados.conferirCPF(CPFField.getText()) == false) {
 					Alerts.showAlert("Fill in all fields", "Invalid CPF", AlertType.WARNING);
-					Main.tdl.speak("Invalid CPF");
+					tdl.speak("Invalid CPF");
 
 				} else {
 					User user = new User(nameField.getText(), CPFField.getText(), 0, true);
@@ -242,7 +277,7 @@ public class FXMLController_user implements Initializable {
 					userDAO.save(user);
 					attTableView();
 					Alerts.showAlert("Registered", "Registered with success", AlertType.INFORMATION);
-					Main.tdl.speak("Registered with sucess");
+					tdl.speak("Registered with sucess");
 
 				}
 			}
@@ -261,13 +296,13 @@ public class FXMLController_user implements Initializable {
 
 		if (ConferirDados.conferirCPF(user.getCpf()) == false) {
 			Alerts.showAlert("Fill in all fields", "Invalid CPF", AlertType.WARNING);
-			Main.tdl.speak("Invalid CPF");
+			tdl.speak("Invalid CPF");
 		} else {
 
 			userDAO.update(user);
 			attTableView();
 			Alerts.showAlert("Updated", "Updated with success", AlertType.INFORMATION);
-			Main.tdl.speak("Updated with sucess");
+			tdl.speak("Updated with sucess");
 		}
 	}
 

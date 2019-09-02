@@ -5,7 +5,6 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import application.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -25,8 +24,11 @@ import model.dao.DaoFactory;
 import model.entities.Book;
 import model.util.Alerts;
 import model.util.Constraints;
+import voiceSpeak.Trying_Different_Languages;
 
 public class FXMLController_book implements Initializable{
+	
+	private Boolean permission = LoginViewController.permission;
 	
 	@FXML
 	private AnchorPane bookPane;
@@ -61,7 +63,40 @@ public class FXMLController_book implements Initializable{
 	@FXML
 	TableColumn<Book, String> nameColumn;
 	
+	private Trying_Different_Languages tdl = new Trying_Different_Languages();
 	private BookDAOJDBC bookDAOJDBC = DaoFactory.createBookDAOJDBC();
+	
+	public void onDelete() {
+		if(permission) {
+			tdl.speak("delete");
+		}
+	}
+	
+	public void onSearchBook() {
+		if(permission) {
+			tdl.speak("Type the book name here");
+		}
+	}
+	
+	
+	public void onCancel() {
+		if(permission) {
+			tdl.speak("cancel");
+		}
+	}
+	
+	public void onUpdate() {
+		if(permission) {
+			tdl.speak("Update info");
+		}
+	}
+	
+	public void onRegister() {
+		if(permission) {
+			tdl.speak("Register");
+		}
+	}
+	
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -109,7 +144,7 @@ public class FXMLController_book implements Initializable{
 		Book book = bookDAOJDBC.findByID(id);
 		if(book==null) {
 
-			Main.tdl.speak("Book not found, sorry sir");
+			tdl.speak("Book not found, sorry sir");
 			throw new Exception("Book not found");
 		}
 		return book;
@@ -128,7 +163,7 @@ public class FXMLController_book implements Initializable{
 			}
 				else {
 					Alerts.showAlert("No name", "Enter name", AlertType.INFORMATION);
-					Main.tdl.speak("enter a name please");
+					tdl.speak("enter a name please");
 								
 				}
 			}
@@ -139,12 +174,12 @@ public class FXMLController_book implements Initializable{
 		try {
 			Book book = findInTable();
 			updateField.setText(book.getName());
-			deleteField.setText(book.getId().toString());
+			deleteField.setText(book.getName());
 		
 			
 		}catch(Exception e) {
 			Alerts.showAlert("Not found", "Book not found", AlertType.WARNING);
-			Main.tdl.speak("Book not found, sorry sir");
+			tdl.speak("Book not found, sorry sir");
 			
 			
 		}
@@ -165,16 +200,16 @@ public class FXMLController_book implements Initializable{
 			attTableView();
 			Alerts.showAlert("Updated with success", "YEAH", AlertType.INFORMATION);
 
-			Main.tdl.speak("UPDATED WITH SUCCESS. YEAHHH");
+			tdl.speak("UPDATED WITH SUCCESS. YEAHHH");
 		}else {
 			Alerts.showAlert("Name", "Enter a book name", AlertType.INFORMATION);
 
-			Main.tdl.speak("ENTER A BOOK NAME PLEASE");
+			tdl.speak("ENTER A BOOK NAME PLEASE");
 		}
 		}catch(Exception e) {
 			Alerts.showAlert("Not found", "Book not found", AlertType.WARNING);
 
-			Main.tdl.speak("Book not found, sorry sir");
+			tdl.speak("Book not found, sorry sir");
 		}
 		
 	}
@@ -184,11 +219,11 @@ public class FXMLController_book implements Initializable{
 			bookDAOJDBC.save(book);
 			attTableView();
 			Alerts.showAlert("Saved with success", "YEAH", AlertType.INFORMATION);
-			Main.tdl.speak("SAVED WITH SUCCESS. YEAHHH");
+			tdl.speak("SAVED WITH SUCCESS. YEAHHH");
 			
 		}else {
 			Alerts.showAlert("Name", "Enter a book name", AlertType.INFORMATION);
-			Main.tdl.speak("ENTER A BOOK NAME PLEASE");
+			tdl.speak("ENTER A BOOK NAME PLEASE");
 						
 		}
 	}
@@ -200,12 +235,12 @@ public class FXMLController_book implements Initializable{
 			attTableView();
 		}else {
 			Alerts.showAlert("Name", "Enter a book name", AlertType.INFORMATION);
-			Main.tdl.speak("Book not found, sorry sir");
+			tdl.speak("Book not found, sorry sir");
 							
 		}
 		}catch(Exception e) {
 			Alerts.showAlert("Not found", "Book not found", AlertType.WARNING);
-			Main.tdl.speak("Book not found, sorry sir");
+			tdl.speak("Book not found, sorry sir");
 					
 		}
 	}
